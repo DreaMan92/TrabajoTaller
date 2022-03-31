@@ -107,7 +107,8 @@ create table piezas(
     MODELO VARCHAR2(20),
     PRECIO NUMBER(5,2),
     STOCK NUMBER(3),
-    DESCRIPCION VARCHAR2(100),
+    DESCRIPCION VARCHAR2(255),
+    URL VARCHAR2(255),
     ID_CATEGORIA NUMBER(10)
 ) tablespace taller;
 create public synonym PIEZAS for system.piezas;
@@ -119,7 +120,7 @@ END;
 
 create table categorias(
     ID_CATEGORIA NUMBER(10) PRIMARY KEY,
-    NOMBRE VARCHAR2(20)
+    NOMBRE VARCHAR2(20) UNIQUE
 ) tablespace taller;
 create public synonym CATEGORIAS for system.CATEGORIAS;
 CREATE SEQUENCE CATEGORIAS_SEQ START WITH 1;
@@ -217,4 +218,46 @@ alter user mech5 DEFAULT role rol_mecanico;
 
 /*Inserts*/
 
+/*Categorias*/
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Filtros y Aceite');
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Frenado');
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Embrague y caja de cambios');
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Óptica Faros Bombillas');
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Arranque y carga');
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Accesorios y Equipamiento');
+INSERT INTO CATEGORIAS(NOMBRE)VALUES('Piezas Motor');
+
+
+
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'SHELL','Helix HX8 5W40 SN 3* 5L A518', 25.50 , 10, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/oscjpg/zoom/1010/5l_helix_hx8_syn_5w_40_high.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'PETRONAS','SYNTIUM 5000 XS 5W-30 SN 4X5L', 28.90 , 21, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/11868700/Lv2/img19.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'MOBIL','Super 2000 10W40 5+1L', 34.60 , 14, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/oscjpg/zoom/1013/151476-51.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'OSCARO','5W40', 21.70 , 10, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/12551004/Lv2/img23.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'CASTROL','CASTROL Magnatec 10W-40', 29.70 , 120, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/oscjpg/zoom/1012/15ca1f.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'TOTALENERGIES','QUARTZ 9000 5W40', 33.90 , 40, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/oscjpg/zoom/1029/213678.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'ELF','EVOLUTION 900 5W40', 32.60 , 52, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/12549869/Lv2/img23.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'MOBIL','Super 2000 Formula P 10W40', 31.90 , 50, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/4625490/Lv2/img23.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'PETRONAS','SYNTIUM 5000 XS 5W30', 10.90 , 30, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/11868675/Lv2/img05.jpg','Filtros y Aceite',1);
+INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
+'PETRONAS','SYNTIUM 5000 XS 5W30', 34.90 , 40, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/11868700/Lv2/img23.jpg','Filtros y Aceite',1);
+    
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 445 110 102',239.50,23,'Inyector','https://oscaro.media/catalog/images/osc360/69324/Lv2/img23.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('SKF','VKMA 33165',46.40,15,'Juego de correas auxiliares servicios','https://oscaro.media/catalog/images/bmp/zoom/50/vkma%2033165.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('RCA FRANCE',' RCA7086392X',296.50,3,'Turbocompresor. Este kit de turbo contiene un kit de juntas y una dosis de aceite.','https://oscaro.media/catalog/images/jpg/zoom/492/rca7086392x.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','506018',34.40,15,'Bomba de agua.','https://oscaro.media/catalog/images/osc360/668965/Lv2/img23.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('MAHLE AFTERMARKET','607VE31078000',11.30,20,'Válvula de admisión','https://oscaro.media/catalog/images/osc360/2218452/Lv2/img23.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VAN WEZEL','1747072',86.40,1,'Cárter de aceite','https://oscaro.media/catalog/images/bmp/zoom/36/i1747072.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VAN WEZEL','1754074',27.90,3,'Cárter de aceite','https://oscaro.media/catalog/images/jpg/zoom/36/i1754074.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('PAYEN','AG5210',31.60,5,'Junta, culata','https://oscaro.media/catalog/images/jpg/zoom/113/img_2811_2016080217345186609.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','255101',12.60,10,'Sensor, presión de aceite','https://oscaro.media/catalog/images/jpg/zoom/21/sensor_oil_pressure_255101_01.jpg',7);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 986 345 007',11.70,9,'Sensor, presión de aceite','https://oscaro.media/catalog/images/bmp/zoom/30/f0986345007.jpg',7);
 
