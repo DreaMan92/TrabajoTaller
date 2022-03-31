@@ -199,7 +199,7 @@ grant all on Reparacion to rol_mecanico;
 grant all on Usa to rol_mecanico;
 revoke delete on Usa from rol_mecanico;
 grant all on categorias to rol_mecanico;
-revoke delete on categorias to rol_mecanico;
+revoke delete on categorias from rol_mecanico;
 grant insert on Realiza to rol_mecanico;
 grant select on EMPLEADO to rol_mecanico;
 
