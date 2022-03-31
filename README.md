@@ -11,6 +11,8 @@ Hemos empezado creando el script que crea usuarios y permisos necesarios para ut
 
 Hemos seguido escribiendo el script .sql que crea los usuarios y tablas para la base de datos.
 
-## Jueves 31-03-2022 (1-2 horas)
+## Jueves 31-03-2022 (3 horas)
 
-Hemos modificado ligeramente el script.sql, y hemos iniciado el diseño de la aplicacion Web.
+Hemos modificado ligeramente el script.sql, y hemos iniciado el diseño de la aplicacion Web.  
+
+Más avances en el script, finalizados los insert de datos de la tabla piezas.
