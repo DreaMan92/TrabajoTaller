@@ -190,7 +190,6 @@ grant update (Stock) on Piezas to rol_mecanico;
 grant insert on Piezas to rol_mecanico;
 grant select on Piezas to rol_mecanico;
 grant all on CLIENTE to rol_mecanico;
-
 revoke delete on CLIENTE from rol_mecanico;
 grant all on Vehiculo to rol_mecanico;
 revoke delete on Vehiculo from rol_mecanico;
@@ -199,8 +198,11 @@ revoke delete on Factura from rol_mecanico;
 grant all on Reparacion to rol_mecanico;
 grant all on Usa to rol_mecanico;
 revoke delete on Usa from rol_mecanico;
+grant all on categorias to rol_mecanico;
+revoke delete on categorias to rol_mecanico;
 grant insert on Realiza to rol_mecanico;
 grant select on EMPLEADO to rol_mecanico;
+
 
 grant rol_administrador to Jefe;
 grant rol_mecanico to mech1;
