@@ -148,8 +148,7 @@ create table empleado(
     NOMBRE VARCHAR2(10),
     APELLIDO VARCHAR2(10),
     TELEFONO VARCHAR2(9),
-    IBAN VARCHAR2(30),
-    DNI VARCHAR2(9),
+    DNI VARCHAR2(9) UNIQUE,
     ID_JEFE NUMBER(10)
 )tablespace administracion;
 create public synonym EMPLEADO for system.empleado;
@@ -164,6 +163,7 @@ ALTER TABLE FACTURA ADD CONSTRAINT FACTURA_FK FOREIGN KEY (ID_VEHICULO) REFERENC
 ALTER TABLE REPARACION ADD CONSTRAINT REP_FK FOREIGN KEY (ID_FACTURA) REFERENCES FACTURA(ID_FACTURA);
 ALTER TABLE EMPLEADO ADD CONSTRAINT EMP_FK FOREIGN KEY (ID_JEFE) REFERENCES EMPLEADO(ID_EMPLEADO);
 ALTER TABLE PIEZAS ADD CONSTRAINT PIEZAS_FK FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIAS(ID_CATEGORIA);
+ALTER TABLE PIEZAS ADD CONSTRAINT COMBO_UNIC UNIQUE (MARCA,MODELO);
 ALTER TABLE USA ADD CONSTRAINT USA_PK PRIMARY KEY (ID_PIEZA,ID_REPARACION);
 ALTER TABLE USA ADD CONSTRAINT USA_FK1 FOREIGN KEY (ID_PIEZA) REFERENCES PIEZA(ID_PIEZA);
 ALTER TABLE USA ADD CONSTRAINT USA_FK2 FOREIGN KEY (ID_REPARACION) REFERENCES REPARACION(ID_REPARACION);
@@ -174,7 +174,7 @@ ALTER TABLE REALIZA ADD CONSTRAINT REALIZA_FK2 FOREIGN KEY (ID_REPARACION) REFER
 
 ALTER TABLE CLIENTE ADD CONSTRAINT DNI_FORM CHECK (REGEXP_LIKE(DNI,'\d{8}[A-Z]$'));
 ALTER TABLE CLIENTE ADD CONSTRAINT TEL_FORM CHECK (REGEXP_LIKE(TELEFONO,'\d{9}'));
-ALTER TABLE CLIENTE ADD CONSTRAINT CORREO_FROM CHECK (REGEXP_LIKE(CORREO,'[A-Za-zá-ú0-9_.]*@[A-Za-zá-ú0-9_]*.[A-Za-z]*$')) 
+ALTER TABLE CLIENTE ADD CONSTRAINT CORREO_FORM CHECK (REGEXP_LIKE(CORREO,'[A-Za-zá-ú0-9_.]*@[A-Za-zá-ú0-9_]*.[A-Za-z]*$')) 
 ALTER TABLE EMPLEADO ADD CONSTRAINT EMP_DNI_FORM CHECK (REGEXP_LIKE(DNI,'\d{8}[A-Z]$'))
 ALTER TABLE EMPLEADO ADD CONSTRAINT EMP_TEL_FORM CHECK (REGEXP_LIKE(TELEFONO,'\d{9}'))
 /*ALTER TABLE VEHICULO ADD CONSTRAINT MATR_FORM CHECK (REGEXP_LIKE(MATRICULA, ''))
@@ -271,6 +271,40 @@ insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('SHELL','Spirax S4G75W80',9.60,1,'Aceite caja de cambios','https://oscaro.media/catalog/images/oscjpg/zoom/1010/spirax_s4_g_75w-80%20(1).jpg',3);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('CORTECO','20034710B',13.70,12,'Casquilo guía, embrague','https://oscaro.media/catalog/images/bmp/zoom/140/20034710.jpg',3);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('FEBI BILSTEIN','46008',20.90,4,'Casquilo guía, embrague','https://oscaro.media/catalog/images/jpg/zoom/101/46008_1.jpg',3);
+
+
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','046871',728.50,1,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/jpg/zoom/21/valeo_headlamp_046871_01.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VAN WEZEL','2730961',34.80,4,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/bmp/zoom/36/k2730961.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('MAGNETI MARELLI','711307024171',532.90,2,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/jpg/zoom/95/ilf_lpo101_wr.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','045437',149.90,2,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/jpg/zoom/21/valeo_headlamp_045437_01.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VAN WEZEL','5216962',70.20,4,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/bmp/zoom/36/k5216961.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('HERTH+BUSS ELPARTS','89901311',17.40,2,'Lámpara incandescente, luz trasera (bombilla) x10','https://oscaro.media/catalog/images/jpg/normal/72/89901311.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('PHILIPS','69741430',11.10,4,'Lámpara (bombilla). 2 ✕ WY21 W VISION','https://oscaro.media/catalog/images/oscjpg/zoom/75/philips_pack_pr_wy21w_69741430_12071b2_s_emea_16.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('HELLA','8GH 008 417-001',6.60,15,'Lámpara (bombilla) x 10','https://oscaro.media/catalog/images/jpg/zoom/2/k1948.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('OSRAM','64132ULT-02B',11.60,10,'Lámpara (bombilla) 2 ✕ H6W ULTRA LIFE','https://oscaro.media/catalog/images/jpg/zoom/67/617121-p.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('PHILIPS','5547730',2.10,1,'Lámpara (bombilla) 2 ✕ R10W VISION','https://oscaro.media/catalog/images/oscjpg/zoom/75/philips_pack_pr_r10w_05547730_12814b2_s_emea_16.jpg',4);
+
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('TUDOR','TB450',89.90,1,'Batería 45 Ah','https://oscaro.media/catalog/images/jpg/zoom/212/tb450new%20copie.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('NIPPON','U540L17B',76.80,10,'Batería 50 Ah','https://oscaro.media/catalog/images/jpg/zoom/440/u540l17ba.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('YUASA','YBX5335',89.90,1,'Batería 100 Ah','https://oscaro.media/catalog/images/oscjpg/zoom/4451/yuasaybx5335.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('NIPPON','U540L05B',64.90,0,'Batería 35 Ah','https://oscaro.media/catalog/images/jpg/zoom/440/u540l05ba.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VARTA','5401260333132',66.90,4,'Batería 40 Ah','https://oscaro.media/catalog/images/jpg/zoom/26/540126033_jpg.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('YUASA','YBX5334',96.90,2,'Batería 100 Ah','https://oscaro.media/catalog/images/jpg/zoom/4451/img_929_4871367.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('YUASA','YBX3054',52.60,1,'Batería 36 Ah','https://oscaro.media/catalog/images/jpg/zoom/4451/img_954_4131630.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 092 S4E 420',147.90,2,'Batería 85 Ah','https://oscaro.media/catalog/images/jpg/zoom/30/0092s4e420dranwhco00mm.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 092 S4E 400',125.50,1,'Batería 65 Ah','https://oscaro.media/catalog/images/jpg/zoom/30/0092s4e400dranwhgr00mm.jpg',5);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VARTA','5954040833132',153.50,1,'Batería 95 Ah','https://oscaro.media/catalog/images/oscjpg/zoom/26/595404083.jpg',5);
+
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('DBS','01763194',59.90,2,'Alfombrilla a medida','https://oscaro.media/catalog/images/oscjpg/zoom/1052/tapis_star_1.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('DBS','01765706',49.90,2,'Alfombrilla a medida','https://oscaro.media/catalog/images/oscjpg/zoom/1052/star1.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('DBS','01766017',42.40,1,'Alfombrilla a medida','https://oscaro.media/catalog/images/oscjpg/zoom/1052/3261887670176.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('DBS','01764109',34.90,4,'Alfombrilla a medida','https://oscaro.media/catalog/images/oscjpg/zoom/1052/tapis_luxe_1.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('DBS','01765700',24.40,1,'Alfombrilla a medida','https://oscaro.media/catalog/images/oscjpg/zoom/1052/star1.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','632001',158.90,1,'Sensor de marcha atrás (sensor de aparcamiento)','https://oscaro.media/catalog/images/oscjpg/zoom/21/632001.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BEEPER','REM101',34.90,0,'Sensor de marcha atrás (sensor de aparcamiento)','https://oscaro.media/catalog/images/oscjpg/zoom/1042/rem101%201%20photo%20principale.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BEEPER','RE002A/4-B',42.20,0,'Sensor de marcha atrás (sensor de aparcamiento)','https://oscaro.media/catalog/images/oscjpg/zoom/1042/radar-de-recul-re002a-4-b_1.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','632202',212.90,2,'Sensor de marcha atrás (sensor de aparcamiento)','https://oscaro.media/catalog/images/jpg/zoom/21/assembly_kit_632202_01.jpg',6);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','632201',141.90,1,'Sensor de marcha atrás (sensor de aparcamiento)','https://oscaro.media/catalog/images/jpg/zoom/21/assembly_kit_632201_01.jpg',6);
 
 
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 445 110 102',239.50,23,'Inyector','https://oscaro.media/catalog/images/osc360/69324/Lv2/img23.jpg',7);
