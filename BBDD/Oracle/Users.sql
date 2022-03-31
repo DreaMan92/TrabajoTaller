@@ -250,6 +250,29 @@ INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
 INSERT INTO PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES(
 'PETRONAS','SYNTIUM 5000 XS 5W30', 34.90 , 40, 'Aceite de motor (aceite motor)','https://oscaro.media/catalog/images/osc360/11868700/Lv2/img23.jpg','Filtros y Aceite',1);
     
+
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 986 494 204',44.80,4,'Juego de 4 pastillas de freno (zapata)','https://oscaro.media/catalog/images/jpg/zoom/30/0986494204phrewhco0000.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BREMBO','08.2536.10',85.80,4,'Discos de freno','https://oscaro.media/catalog/images/jpg/zoom/65/08253610.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BUDWEG CALIPER A/S','343520',121.50,3,'Pinza de freno, reacondicionada.','https://oscaro.media/catalog/images/oscjpg/zoom/114/343520.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 986 134 428',164.90,5,'Pinza de freno','https://oscaro.media/catalog/images/jpg/zoom/30/0986134428phfrwhco0000.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('METZGER','6250252',75.80,2,'Pinza de freno','https://oscaro.media/catalog/images/bmp/zoom/94/6250252.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('FEBI BILSTEIN','102296',35.40,1,'Sensor, revoluciones de la rueda','https://oscaro.media/catalog/images/jpg/zoom/101/102296_1.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('AJUSA','01107400',5.9,4,'Junta (retén)','https://oscaro.media/catalog/images/oscjpg/zoom/139/01107400.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('ELRING','646.830',24.10,4,'Junta, bomba de vacío','https://oscaro.media/catalog/images/oscjpg/zoom/10/758044.jpg',2);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BREMBO','09.8304.21',64.60,4,'Discos de freno','https://oscaro.media/catalog/images/jpg/zoom/65/09830421.jpg',2);
+
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('LUK','602 0008 00',981.50,1,'Kit de embrague','https://oscaro.media/catalog/images/jpg/zoom/6/602000800.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','828060',349.90,4,'Kit de embrague','https://oscaro.media/catalog/images/jpg/zoom/21/valeo_kit3p_rb.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('LUK','624 3474 09',230.90,2,'Kit de embrague','https://oscaro.media/catalog/images/jpg/zoom/6/09_luk_pc_single_parts_clutch.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','821362',136.90,4,'Kit de embrague','https://oscaro.media/catalog/images/jpg/zoom/21/821362c.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BLUE PRINT','ADA103012',246.90,3,'Kit de embrague','https://oscaro.media/catalog/images/jpg/zoom/350/ada103012_2.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('AISIN','ATF-91005',51.40,3,'Aceite caja de cambios','https://oscaro.media/catalog/images/jpg/zoom/166/atf-91005%2001.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('AISIN','CVTF-90005',53.90,2,'Aceite caja de cambios','https://oscaro.media/catalog/images/jpg/zoom/166/cvtf-90005%2001.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('SHELL','Spirax S4G75W80',9.60,1,'Aceite caja de cambios','https://oscaro.media/catalog/images/oscjpg/zoom/1010/spirax_s4_g_75w-80%20(1).jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('CORTECO','20034710B',13.70,12,'Casquilo guía, embrague','https://oscaro.media/catalog/images/bmp/zoom/140/20034710.jpg',3);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('FEBI BILSTEIN','46008',20.90,4,'Casquilo guía, embrague','https://oscaro.media/catalog/images/jpg/zoom/101/46008_1.jpg',3);
+
+
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 445 110 102',239.50,23,'Inyector','https://oscaro.media/catalog/images/osc360/69324/Lv2/img23.jpg',7);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('SKF','VKMA 33165',46.40,15,'Juego de correas auxiliares servicios','https://oscaro.media/catalog/images/bmp/zoom/50/vkma%2033165.jpg',7);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('RCA FRANCE',' RCA7086392X',296.50,3,'Turbocompresor. Este kit de turbo contiene un kit de juntas y una dosis de aceite.','https://oscaro.media/catalog/images/jpg/zoom/492/rca7086392x.jpg',7);
@@ -260,4 +283,3 @@ insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('PAYEN','AG5210',31.60,5,'Junta, culata','https://oscaro.media/catalog/images/jpg/zoom/113/img_2811_2016080217345186609.jpg',7);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('VALEO','255101',12.60,10,'Sensor, presión de aceite','https://oscaro.media/catalog/images/jpg/zoom/21/sensor_oil_pressure_255101_01.jpg',7);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,CATEGORIA)VALUES ('BOSCH','0 986 345 007',11.70,9,'Sensor, presión de aceite','https://oscaro.media/catalog/images/bmp/zoom/30/f0986345007.jpg',7);
-
