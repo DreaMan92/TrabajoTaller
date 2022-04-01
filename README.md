@@ -23,5 +23,6 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
  - 4 Portatiles Windows 10 HW y resto SW en sucio.
  - Servidor maquina linux contratando el espacio en nube en vez en local.
  - Contratacion de Internet, un router en despacho que emita Wifi para todo taller. (Evitando cableado dado que es un taller de coches).
- - Copias de seguridad : TimeShift(o otra) con crontab en el servidor Linux back con toda base de datos y con informacion de la pagina web
+ - Copias de seguridad : TimeShift(o otra) con crontab en el servidor Linux back con toda base de datos y con informacion de la pagina web.
+ - Tambien hemos añadido inserts de los empleados y de los clientes en la base de datos.
  
