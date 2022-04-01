@@ -1,4 +1,3 @@
-
 /*Creamos tablespaces*/
 create tablespace administracion datafile 'administracion.dbf' size 1M autoextend on;
 create tablespace taller datafile 'taller.dbf' size 1M autoextend on;
@@ -318,3 +317,36 @@ insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('PAYEN','AG5210',31.60,5,'Junta, culata','https://oscaro.media/catalog/images/jpg/zoom/113/img_2811_2016080217345186609.jpg',7);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('VALEO','255101',12.60,10,'Sensor, presión de aceite','https://oscaro.media/catalog/images/jpg/zoom/21/sensor_oil_pressure_255101_01.jpg',7);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('BOSCH','0 986 345 007',11.70,9,'Sensor, presión de aceite','https://oscaro.media/catalog/images/bmp/zoom/30/f0986345007.jpg',7);
+
+insert into cliente(nombre,apellido,telefono,direccion,dni) values('Miguel','Fernandez','624232910','Madrid,Calle Lorenzo 40, 2B','45199189P');
+insert into cliente(nombre,apellido,telefono,direccion,dni) values('Felipe','Gonzalez','645262911','Irún,Calle Oscura 2','41293189K');
+insert into cliente(nombre,apellido,telefono,direccion,dni) values('Paco','El Del Bar','642222111','Madrid,Calle Zapatazo 40','14144189A');
+insert into cliente(nombre,apellido,telefono,direccion,dni) values('Jaime','Alvarez','623222111','Zaragoza,Calle Roberto 22, 1A','45122279K');
+insert into cliente(nombre,apellido,telefono,direccion,dni) values('Aitor','Arconada','644112111','Madrid,Calle Lorenzo 40, 2A','46197159N');
+insert into cliente(nombre,apellido,telefono,direccion,dni,correo) values ('Elena','Villazul','644622611','Hondarribia, Soroetaberri 10, 2A','46197159K','EleVil@gmail.com');
+insert into cliente(nombre,apellido,telefono,direccion,dni,correo) values  ('Ane','Perez','644789111','Guijuelo, Calle Jamón 2, 5A','46195159N','AnePer@gmail.com');
+insert into cliente(nombre,apellido,telefono,direccion,dni,correo) values ('Julia','Bilbao','698712111','Gijón, Calle Sidrera ,3 Derecha','46567959A','JulBil@gmail.com');
+insert into cliente(nombre,apellido,telefono,direccion,dni,correo) values ('Martina','Martinis','677122111','Irún, Calle Clara 3','44195679A','MarMar@gmail.com');
+insert into cliente(nombre,apellido,telefono,direccion,dni,correo) values ('Gonzala','Gonzolo','614392910','Irún, Paseo Colon 30, 2A','46197167S','GonGOn@gmail.com');
+
+
+/*jefe*/
+
+insert into empleado(NOMBRE,APELLIDO,TELEFONO,DNI)VALUES
+('Juan','Rodriguez','623748765','74416412V');
+/*empleados*/
+insert into empleado(NOMBRE,APELLIDO,TELEFONO,DNI,ID_JEFE)VALUES
+('Raul','Iruretagollena','678123451','48125689U',1);
+
+insert into empleado(NOMBRE,APELLIDO,TELEFONO,DNI,ID_JEFE)VALUES
+('Juanjo','Uriburu','712345623','56781243T',1);
+
+insert into empleado(NOMBRE,APELLIDO,TELEFONO,DNI,ID_JEFE)VALUES
+('Aitor','Segurola','678908712','71142398P',1);
+
+insert into empleado(NOMBRE,APELLIDO,TELEFONO,DNI,ID_JEFE)VALUES
+('Sonia','Virasoro','678954321','87659823M',1);
+
+insert into empleado(NOMBRE,APELLIDO,TELEFONO,DNI,ID_JEFE)VALUES
+('JuanMari','Peralta','711232455','44671231R',1);
+commit;
