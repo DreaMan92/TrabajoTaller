@@ -26,9 +26,10 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
  - Copias de seguridad : TimeShift(o otra) con crontab en el servidor Linux back con toda base de datos y con informacion de la pagina web.
  - Tambien hemos añadido inserts de los empleados y de los clientes en la base de datos.
 
-## Lunes 04/04/2022 (?)
+## Lunes 04/04/2022 (3-4)
  - En primer lugar hemos concretado con el profesor de progrmacion que solo hay que implementar un caso de uso. En nuestro caso hemos decidido implementar el de "Reparar un vehiculo".
- - Finde Semana Martin investiga sobre FrameWorkc Spring, y crea un backend para Web.
+ - Fin de Semana Martin investiga sobre FrameWorkc Spring, y crea un backend para Web.
  - Empezamos con la programacion. 
+ - Terminamos inserts de vehiculos.
 
  
