@@ -33,6 +33,7 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
  - Terminamos inserts de vehiculos.  
 
 
-## Martes 05/04/2022 (3 horas)  
+## Martes 05/04/2022 (3 horas + 2 horas)  
  - Seguimos programando, en principio el gestor, DAO y modelos hechos. Enfasis en crear las interfaces.
+ - Falta terminar alguna interfaz, el caso de uso esta practicamente implementado.
  
