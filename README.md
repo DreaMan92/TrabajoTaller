@@ -37,3 +37,6 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
  - Seguimos programando, en principio el gestor, DAO y modelos hechos. Enfasis en crear las interfaces.
  - Falta terminar alguna interfaz, el caso de uso esta practicamente implementado.
  
+## Miercoles 06/04/2022 (2 horas)
+ - Utilizando la libreria iText hemos implementado la creacion de un documento pdf para las facturas, 
+ - Faltaria editar las interfaces y el diseño del pdf.
