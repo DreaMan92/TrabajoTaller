@@ -39,4 +39,8 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
  
 ## Miercoles 06/04/2022 (2 horas)
  - Utilizando la libreria iText hemos implementado la creacion de un documento pdf para las facturas, 
- - Faltaria editar las interfaces y el diseño del pdf.
+ - Faltaria editar las interfaces y el diseño del pdf.  
+
+## Jueves 07/04/2022 (3 horas)  
+ - 2 Horas -> Hemos empezado a diseñar la página web. A falta de footer la página de inicio estaría terminada.
+ - 1 Hora -> Editando las interfaces del programa de java.
