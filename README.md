@@ -43,4 +43,7 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
 
 ## Jueves 07/04/2022 (3 horas)  
  - 2 Horas -> Hemos empezado a diseñar la página web. A falta de footer la página de inicio estaría terminada.
- - 1 Hora -> Editando las interfaces del programa de java.
+ - 1 Hora -> Editando las interfaces del programa de java.  
+
+## Martes 19/04/2022 (1.5 horas)
+ - La página de producto creada, junto al backend que utiliza la plantilla.
