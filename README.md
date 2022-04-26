@@ -47,3 +47,7 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
 
 ## Martes 19/04/2022 (1.5 horas)
  - La página de producto creada, junto al backend que utiliza la plantilla.
+
+## Martes 26/04/2022 (2 horas Martin + 1 Gonzalo??)
+ - Modificar la página de donde encontrarnos (Gonzalo)
+ - Documentación 

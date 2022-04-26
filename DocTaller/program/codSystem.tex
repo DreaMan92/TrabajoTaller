@@ -1,0 +1,311 @@
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+
+\lstset{language=Java,
+backgroundcolor=\color{white},
+inputencoding=utf8,
+escapeinside={\%*}{*)},
+literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+basicstyle=\footnotesize,
+breakatwhitespace=false,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\begin{lstlisting}[caption=GestorOperaciones.java (App Escritorio)]
+    package System;
+
+    import java.sql.SQLException;
+    import java.util.ArrayList;
+    import java.util.Date;
+    import java.util.Map.Entry;
+    
+    import DAO.Consultas;
+    import DAO.Inserts;
+    import DAO.Updates;
+    import Modelos.Factura;
+    import Modelos.Pieza;
+    import Modelos.Reparacion;
+    import Modelos.Vehiculo;
+    public class GestorOperaciones {
+        
+        private String username;
+        private String password;
+        private ArrayList<Vehiculo> coches;
+        private ArrayList<Factura> facturas;
+        private ArrayList<Pieza> piezas;
+        private ArrayList<Reparacion> reparaciones; 
+        private Consultas consultasDB;
+        private Inserts insertsDB;
+        private Updates updatesDB;
+        
+        public GestorOperaciones(String username, String password) throws SQLException {
+            this.username=username;
+            this.password=password;
+            consultasDB = new Consultas(username,password);
+            insertsDB = new Inserts(username,password);
+            updatesDB = new Updates(username,password);
+            /*Obtenemos los datos de la base de datos*/
+            coches = consultasDB.verVehiculos();
+            piezas = consultasDB.verPiezas();
+            facturas = consultasDB.verFacturas();
+            reparaciones = consultasDB.verReparaciones();
+            /*Asignamos el vehiculo a cada factura usando las claves primarias*/
+            facturas.forEach(factura ->{
+                factura.setCoche( buscarPorID( factura.getId_vehiculo() ));
+            });
+            /*Asignamos a que factura corresponde cada reparacion.*/
+            reparaciones.forEach(rep ->{
+                Factura factura = buscarFacturaPorId(rep.getId_factura());
+                factura.getReparaciones().add(rep);
+            });
+        }
+        
+        /*Devuelve la factura con el ID especificado*/
+        private Factura buscarFacturaPorId(int id) {
+            for(Factura factura : facturas) {
+                if (factura.getId()==id) return factura;
+            }
+            return null;
+        }
+        
+        /*Devuelve el vehiculo con el ID buscado*/
+        private Vehiculo buscarPorID(int id) {
+            for(Vehiculo coche : coches) {
+                if (coche.getId()==id) return coche;
+            }
+            return null;
+        }
+        
+        /*Devuelve una factura abierta del coche. Si no la encuentra le crea una nueva y la escribe en la base de datos*/
+        public Factura buscarFacturaActualCoche(Vehiculo coche) throws SQLException {
+            for(Factura factura : facturas) {
+                if (factura.getCoche()==coche && factura.getFecha_fin()==null) {
+                    return factura;
+                }
+            }
+            
+            /*En caso de que sea nueva factura, la escribimos en la base de datos y obtenemos su id*/
+            Factura factura = new Factura(coche);
+            insertsDB.insertarFactura(factura);
+            factura.setId(consultasDB.last_factura_id());
+            facturas.add(factura);
+            return factura;
+        }
+    
+        /*Actualiza el stock de la pieza restando la cantidad introducida*/
+        private void restarPiezas(Pieza pieza, int cantidad) throws SQLException {
+            updatesDB.restarStockPieza(pieza, cantidad);
+            pieza.setStock(pieza.getStock()-cantidad);
+        }
+        
+        public ArrayList<Pieza> piezasEnStock(){
+            ArrayList<Pieza> piezerio = new ArrayList<Pieza>();
+            piezas.forEach(piez -> {
+                if (piez.getStock()>0) piezerio.add(piez);
+            });
+            return piezerio;
+        }
+        /*
+         Guarda la reparacion en la base de datos, junto a todas la lineas correspondientes de la tabla USA (piezas-cantidad-reparacion)
+         Tambien actualiza el stock de piezas de la tabla piezas.
+          */
+        public void anadirReparacion(Reparacion rep) throws SQLException {
+            insertsDB.insertarReparacion(rep);
+            for (Entry<Pieza,Integer> linea : rep.getPiezas().entrySet()) {
+                restarPiezas(linea.getKey(),linea.getValue());
+            }
+        }
+        
+        /*Cuando un vehiculo ha sido totalmente reparado (1 o mas reparaciones)
+         Sobre escribe la linea en la tabla factura, actualizando el precio total, la fecha fin y si esta pagado o no. 
+         */
+        public void terminarReparacionCoche(Factura factura) throws SQLException {
+            factura.setFecha_fin(new Date());
+            /*Hacer update en lugar de insert*/
+            updatesDB.actualizarFactura(factura);
+        }
+        
+        /*Añade piezas a la reparacion vigente*/
+        public void anadirPiezasReparacion(Pieza pieza,int cantidad,Reparacion rep) {
+            rep.getPiezas().put(pieza, cantidad);
+        }
+        
+        public ArrayList<Vehiculo> vehiculosEnReparacion(){
+            ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+            facturas.forEach(factura ->{
+                if (factura.getFecha_fin()==null) vehiculos.add(factura.getCoche());
+            });
+            return vehiculos;
+        }
+    
+        public ArrayList<Vehiculo> getCoches() {
+            return coches;
+        }
+    
+        public void setCoches(ArrayList<Vehiculo> coches) {
+            this.coches = coches;
+        }
+    
+        public ArrayList<Factura> getFacturas() {
+            return facturas;
+        }
+    
+        public void setFacturas(ArrayList<Factura> facturas) {
+            this.facturas = facturas;
+        }
+    
+        public ArrayList<Pieza> getPiezas() {
+            return piezas;
+        }
+    
+        public void setPiezas(ArrayList<Pieza> piezas) {
+            this.piezas = piezas;
+        }
+    
+        public ArrayList<Reparacion> getReparaciones() {
+            return reparaciones;
+        }
+    
+        public void setReparaciones(ArrayList<Reparacion> reparaciones) {
+            this.reparaciones = reparaciones;
+        }	
+        
+        
+    }
+    
+    
+\end{lstlisting}
+\clearpage
+
+\begin{lstlisting}[caption=CreadorPDF.java (App Escritorio)]
+package System;
+
+import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map.Entry;
+
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.io.image.ImageType;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.layout.*;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.borders.DashedBorder;
+import com.itextpdf.layout.borders.DoubleBorder;
+import com.itextpdf.layout.borders.SolidBorder;
+import com.itextpdf.layout.element.BlockElement;
+import com.itextpdf.layout.element.Div;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.List;
+import com.itextpdf.layout.element.ListItem;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.property.ListNumberingType;
+
+import Modelos.Pieza;
+import Modelos.Factura;
+import Modelos.Reparacion;
+
+
+
+public class CreadorPDF {
+	
+	
+	private static final Border bordeDoble = new DoubleBorder(1.0f);
+	private static final Border bordeSolido = new SolidBorder(1.0f);
+	private static final Border borde_seccion = new DashedBorder(1.0f);
+	
+    public static void crearPdfFactura(Factura factura) throws FileNotFoundException {
+    	String dest = "facturas/Factura "+factura.getId()+".pdf";
+    	File file = new File(dest);
+		file.getParentFile().mkdirs();
+
+    	//Inicializar escritor pdf
+    	FileOutputStream fos = new FileOutputStream(dest);
+    	PdfWriter writer = new PdfWriter(fos);
+    	
+    	//Inicializar documento pdf
+    	PdfDocument pdf = new PdfDocument(writer);
+    	
+    	//Inicializar documento
+    	Document documento = new Document(pdf,PageSize.A4);
+    	//Escribir en el documento
+		Paragraph cabezero = new Paragraph();
+
+		try {
+			String url = "src/Resources/imagenes/llave-inglesa.png";
+			ImageData data = ImageDataFactory.create(url);
+			Image img = new Image(data);
+			cabezero.add(img);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		cabezero.add(new Text("Hermanos Gutierrez S.A").setFontSize(20f));
+    	documento.add(cabezero);
+    	documento.add(new Paragraph("Cliente : " +factura.getCoche().getDueno().toString()) .setBorder(borde_seccion));
+    	documento.add(new Paragraph("Vehiculo: " +factura.getCoche().toString()) .setBorder(borde_seccion));
+    	documento.add(new Paragraph("Fecha entrada: " +factura.getFecha_entrada()) .setBorder(borde_seccion));
+    	documento.add(new Paragraph("Fecha Fin: "+ factura.getFecha_fin()).setBorder(borde_seccion));
+    	documento.add(new Paragraph("Operaciones:"));
+    	List lista = new List(ListNumberingType.DECIMAL) .setBorder(bordeSolido);
+    	for (Reparacion rep : factura.getReparaciones()) {
+			ListItem reparacion = new ListItem();
+			
+    		reparacion.add(new Paragraph("Descripcion de operacion: "+ rep.getComentarios()));
+    		Table piezas = new Table(4);
+    		piezas.addHeaderCell("Marca");
+        	piezas.addHeaderCell("Modelo");
+        	piezas.addHeaderCell("Precio Ud");
+        	piezas.addHeaderCell("Cantidad");
+        	try {
+        		for (Entry<Pieza,Integer> linea : rep.getPiezas().entrySet()) {
+        			piezas.startNewRow();
+        			piezas.addCell(linea.getKey().getMarca());
+        			piezas.addCell(linea.getKey().getModelo());
+        			piezas.addCell(Double.toString(linea.getKey() .getPrecio()));
+        			piezas.addCell(Integer.toString(linea.getValue()));
+        		}
+        		reparacion.add(piezas);
+        	} catch(Exception e) {
+        		//En caso de una operacion sin piezas
+        	}
+			reparacion.add(new Paragraph("Mano de obra: "+ 10*rep.getDuracion()+"\u20ac"));
+			lista.add(reparacion);
+
+    	} 
+		documento.add(lista);
+    	
+    	documento.add(new Paragraph("Total piezas y mano de obra: " + factura.getPrecio_total() + "\u20ac") .setBorder(bordeDoble));
+    	
+    	documento.close();
+    	try {
+			java.awt.Desktop.getDesktop().edit(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+}
+\end{lstlisting}
+\clearpage

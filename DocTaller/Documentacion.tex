@@ -37,6 +37,10 @@
 \date{2022}
 \begin{document}
 \maketitle 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{pexels-cottonbro-4480505.jpg}
+\end{figure}
 \clearpage
 \tableofcontents
 \clearpage
@@ -51,19 +55,20 @@
 \subsection{Contextualización del proyecto}
 \subsection{Análisis}
 \subsection{Diseño} 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=1.0\textwidth]{pexels-cottonbro-4480505.jpg}
-  \caption{Diagrama de casos de uso}
-\end{figure}
 \subsection{Planificación semanal}
 \subsection{FOL}
 \section{FASE 2: IMPLEMENTACIÓN Y PRUEBAS}
 \subsection{DDBB: Código SQL}
-\input{ScriptSql}
+\input{bbdd/ScriptSql}
 \subsection{Programación: Clases y métodos}
-\subsubsection{Modelos}
-\input{codModulos}
+\subsubsection{Paquete Modelos}
+\input{program/codModelos}
+\subsubsection{Paquete DAO}
+\input{program/codDao}
+\subsubsection{Paquete System}
+\input{program/codSystem}
+\subsubsection{Paquete UI}
+\input{program/codUI}
 \subsection{Lenguaje de Marcas: conjunto de ficheros}
 \subsection{EDD: Diagramas}
 \subsection{SSII: Instalación y configuración y puesta en marcha.}

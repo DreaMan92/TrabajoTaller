@@ -1,0 +1,330 @@
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+
+\lstset{language=Java,
+backgroundcolor=\color{white},
+inputencoding=utf8,
+escapeinside={\%*}{*)},
+literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+basicstyle=\footnotesize,
+breakatwhitespace=false,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+\begin{lstlisting}[caption=ConexionDB.java (App Escritorio)]
+package DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+public class ConexionDB {
+	
+    public String driver = "oracle.jdbc.driver.OracleDriver";
+    public String hostname_port_db = "192.168.100.210:1521:xe";
+
+    // Ruta de nuestra base de datos (desactivamos el uso de SSL con "?useSSL=false")
+    public String url = "jdbc:oracle:thin:@" + hostname_port_db ;
+
+
+    public Connection conectarOracle(String username,String password) {
+        Connection conn = null;
+
+        try {
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        return conn;
+    }
+
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=Consultas.java (App Escritorio)]
+package DAO;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import Modelos.Cliente;
+import Modelos.Factura;
+import Modelos.Pieza;
+import Modelos.Reparacion;
+import Modelos.Vehiculo;
+
+public class Consultas {
+	
+	private String username;
+	private String password;
+	
+	public Consultas(String username,String password) {
+		this.username=username;
+		this.password=password;
+	}
+	
+	/*Devuelve la ID de la ultima reparacion realizada*/
+	public int last_rep_id() throws SQLException {
+		ConexionDB SQL = new ConexionDB();
+		Connection conn = SQL.conectarOracle(username, password);
+		try {
+			String sql_id_rep = "select max(id_reparacion) from reparacion";
+			Statement pstm = conn.createStatement();
+			ResultSet resultado = pstm.executeQuery(sql_id_rep);
+			if (resultado.next()) return resultado.getInt(1);
+			return 0;
+		} catch(Exception e) {
+			conn.close();
+			return 0;
+		}
+	}
+	
+	/*Devuelve la ID de la ultima factura*/
+	public int last_factura_id() throws SQLException {
+		ConexionDB SQL = new ConexionDB();
+		Connection conn = SQL.conectarOracle(username, password);
+		try {
+			String sql_id_rep = "select max(id_factura) from factura";
+			Statement pstm = conn.createStatement();
+			ResultSet resultado = pstm.executeQuery(sql_id_rep);
+			if (resultado.next()) return resultado.getInt(1);
+			return 0;
+		} catch(Exception e) {
+			conn.close();
+			return 0;
+		}
+	}
+	
+	/*Devuelve los vehiculos de la base de datos*/
+	public ArrayList<Vehiculo> verVehiculos() throws SQLException{
+		ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+		ConexionDB SQL = new ConexionDB();
+		Connection conn = SQL.conectarOracle(username, password);
+		try {
+			
+			String query = "select id_vehiculo,modelo,color, a\u00f1o, matricula,cliente.id_cliente, nombre,apellido,telefono, direccion,dni,correo from vehiculo inner join cliente on vehiculo.id_cliente = cliente.id_cliente";
+			Statement pstm = conn.createStatement();
+			ResultSet resultados =pstm.executeQuery(query);
+			while(resultados.next()) {
+				Cliente dueno = new Cliente(resultados.getInt(6), resultados.getString(7), resultados.getString(8), resultados.getString(9), resultados.getString(10), resultados.getString(11), resultados.getString(12) );
+				Vehiculo buga = new Vehiculo(resultados.getInt(1), resultados.getString(2), resultados.getString(3),resultados.getDate(4), resultados.getString(5),dueno);
+				vehiculos.add(buga);
+			}
+			conn.close();
+			return vehiculos;
+		} catch(Exception e) {
+			conn.close();
+			return vehiculos;
+		}
+	}
+	
+
+	/*Devuelve las piezas de la base de datos*/
+	public ArrayList<Pieza> verPiezas() throws SQLException{
+		ArrayList<Pieza> piezas = new ArrayList<Pieza>();
+		ConexionDB SQL = new ConexionDB();
+		Connection conn = SQL.conectarOracle(username, password);
+
+			try {
+				String query = "select id_pieza, marca, modelo, precio, stock, descripcion, categorias.nombre from piezas inner join categorias on piezas.id_categoria=categorias.id_categoria";
+				Statement pstm =  conn.createStatement();
+				ResultSet resultados =pstm.executeQuery(query);
+				while(resultados.next()) {
+					Pieza pieza = new Pieza(resultados.getInt(1), resultados.getString(2), resultados.getString(3), resultados.getDouble(4), resultados.getInt(5), resultados.getString(6), resultados.getString(7));
+					piezas.add(pieza);
+				}
+				conn.close();
+				return piezas;
+			}catch (Exception e) {
+				conn.close();
+				return piezas;
+			}
+
+	}
+	
+	/*Devuelve las facturas de la base de datos*/
+	public ArrayList<Factura> verFacturas() throws SQLException{
+		ArrayList<Factura> facturas = new ArrayList<Factura>();
+		ConexionDB SQL = new ConexionDB();
+		Connection conn = SQL.conectarOracle(username, password);
+		try {
+			String query = "select id_factura, fecha_entrada, precio_total, fecha_fin, pagado, id_vehiculo from factura";
+			Statement pstm =  conn.createStatement();
+			ResultSet resultados =pstm.executeQuery(query);
+			while(resultados.next()) {
+				
+				Factura fact = new Factura(resultados.getInt(1), resultados.getDate(2), resultados.getDouble(3), resultados.getDate(4), resultados.getBoolean(5), resultados.getInt(6));
+				facturas.add(fact);
+			}
+			conn.close();
+			return facturas;
+		}catch (Exception e) {
+			conn.close();
+			return facturas;
+		}
+	}
+	
+	/*Devuelve las reparaciones de la base de datos*/
+	public ArrayList<Reparacion> verReparaciones() throws SQLException{
+		ArrayList<Reparacion> reparaciones = new ArrayList<Reparacion>();
+		ConexionDB SQL = new ConexionDB();
+		Connection conn = SQL.conectarOracle(username, password);
+		try {
+			String query = "select * from reparacion";
+			Statement pstm =  conn.createStatement();
+			ResultSet resultados =pstm.executeQuery(query);
+			while(resultados.next()) {
+				Reparacion rep = new Reparacion(resultados.getInt(1), resultados.getDate(2), resultados.getFloat(3), resultados.getString(4), resultados.getInt(5));
+				reparaciones.add(rep);
+			}
+			conn.close();
+			return reparaciones;
+		}catch (Exception e) {
+			conn.close();
+			return reparaciones;
+		}
+	}
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=Inserts.java (App Escritorio)]
+package DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Map.Entry;
+
+import Modelos.Factura;
+import Modelos.Pieza;
+import Modelos.Reparacion;
+
+public class Inserts {
+	
+	private String username;
+	private String password;
+	
+	public Inserts(String username,String password) {
+		this.username=username;
+		this.password=password;
+	}
+	
+	/*Inserta una nueva reparacion en la base de datos, junto a las lineas correspondientes en la tabla usa*/
+	public void insertarReparacion(Reparacion rep) throws SQLException {
+		
+		ConexionDB conexion = new ConexionDB();
+		Connection conn = conexion.conectarOracle(username, password);
+		try {
+			String ssql = "insert into reparacion(tiempo_hora,horas_duracion,comentarios, id_factura) values(?,?,?,?)";
+			PreparedStatement stmt = conn.prepareStatement(ssql);
+			stmt.setDate(1, new java.sql.Date(rep.getHora().getTime()));
+			stmt.setFloat(2, rep.getDuracion());
+			stmt.setString(3, rep.getComentarios());
+			stmt.setInt(4,rep.getId_factura());
+			stmt.executeUpdate();
+			int id_rep = new Consultas(username,password).last_rep_id();
+			for(Entry<Pieza, Integer> entrada : rep.getPiezas().entrySet()) {
+				String ssql2 = "insert into usa values(?,"+id_rep+",?)";
+				PreparedStatement stmt2 = conn.prepareStatement(ssql2);
+				stmt2.setInt(1, entrada.getKey().getId());
+				stmt2.setInt(2, entrada.getValue());
+				stmt2.executeUpdate();
+			}
+			conn.close();
+		} catch(Exception e) {
+			conn.close();
+		}
+	}
+	
+	/*Inserta una nueva factura en la bbdd*/
+	public void insertarFactura(Factura factura) throws SQLException{
+		ConexionDB conexion = new ConexionDB();
+		Connection conn = conexion.conectarOracle(username, password);
+		try {
+			String ssql = "insert into factura(fecha_entrada,precio_total, pagado,id_vehiculo) values(?,?,?,?)";
+			PreparedStatement stmt = conn.prepareStatement(ssql);			
+			stmt.setDate(1, new java.sql.Date( factura.getFecha_entrada().getTime() ));
+			stmt.setDouble(2, factura.getPrecio_total());
+			stmt.setInt(3, factura.isPagado() ? 1 : 0);
+			stmt.setInt(4,factura.getId_vehiculo());
+			stmt.executeUpdate();
+			conn.close();	
+		} catch(Exception e) {
+			e.printStackTrace();
+			conn.close();
+		}
+	}
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=Updates.java (App Escritorio)]
+package DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import Modelos.Factura;
+import Modelos.Pieza;
+
+public class Updates {
+	
+	private String username;
+	private String password;
+	
+	public Updates(String username,String password) {
+		this.username=username;
+		this.password=password;
+	}
+	
+	/*Actualiza la factura que ha sido finalizada, estableciendo el precio final y la fecha final*/
+	public void actualizarFactura(Factura factura) throws SQLException {
+		ConexionDB conexion = new ConexionDB();
+		Connection conn = conexion.conectarOracle(username, password);
+		try {
+			String ssql = "update factura set  precio_total=? , fecha_fin = ?,pagado=? where id_factura=?";
+			PreparedStatement stmt = conn.prepareStatement(ssql);
+			stmt.setDate(2, new java.sql.Date (factura.getFecha_fin().getTime()));
+			stmt.setDouble(1, factura.getPrecio_total());
+			stmt.setBoolean(3, factura.isPagado());
+			stmt.setInt(4, factura.getId());
+			stmt.executeUpdate();
+			conn.close();
+		} catch(Exception e) {
+			conn.close();
+		}
+	}
+	
+	/*Cambia el stock de la pieza especificada*/
+	public void restarStockPieza(Pieza pieza,int cantidad) throws SQLException {
+		ConexionDB conexion = new ConexionDB();
+		Connection conn = conexion.conectarOracle(username, password);
+		try {
+			String ssql = "update piezas set stock=? where id_pieza=?";
+			PreparedStatement stmt = conn.prepareStatement(ssql);
+			stmt.setInt(1,pieza.getStock()-cantidad);
+			stmt.setInt(2, pieza.getId());
+			stmt.executeUpdate();
+			conn.close();
+		} catch(Exception e) {
+			conn.close();
+		}
+	}
+}
+\end{lstlisting}
+\clearpage
