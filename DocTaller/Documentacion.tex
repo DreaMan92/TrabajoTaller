@@ -2,12 +2,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[spanish,activeacute]{babel}
 \usepackage{titlesec}
 \titleformat{\section}
   {\normalfont\fontsize{14}{14}\bfseries}{\thesection}{1em}{}
 \titlespacing{\paragraph}{0pt}{1.5em}{.5em}[]
-
+\inputencoding{utf8}
 \usepackage{mathtools}
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.png,.pdf,.jpg}
@@ -16,31 +17,14 @@
 \usepackage{cancel}
 \usepackage{bm}
 \usepackage{amsmath}
-
-\usepackage{listings}
 \usepackage{color}
 \usepackage{hyperref}
-
+\usepackage{listingsutf8}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand\lstlistlistingname{Códigos fuente}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{frame=tb,
-  language=Java,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -58,7 +42,9 @@
 \clearpage
 \listoffigures
 \clearpage
-
+\clearpage
+\lstlistoflistings
+\clearpage
 \section{FASE 1: ANALISIS Y DISEÑO}
 \subsection{Introducción: AppTaller}
 \subsection{Objetivos}
@@ -85,5 +71,4 @@
 \subsection{Inglés}
 \subsection{Consideraciones}
 \subsection{Bibliografía}
-
 \end{document}

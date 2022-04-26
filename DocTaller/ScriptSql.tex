@@ -1,4 +1,32 @@
-\begin{lstlisting}
+\lstset{%
+  	backgroundcolor=\color{white},
+      inputencoding=utf8,
+    escapeinside={\%*}{*)},
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+  	basicstyle=\footnotesize,
+  	breakatwhitespace=false,
+  	breaklines=true,
+  	captionpos=b,
+  	commentstyle=\color{dkgreen},
+  	deletekeywords={...},
+  	escapeinside={\%*}{*)},
+  	extendedchars=true,
+  	frame=single,
+  	keepspaces=true,
+  	keywordstyle=\color{blue},
+  	language=SQL,
+  	morekeywords={*,modify,MODIFY,...},
+  	numbers=left,
+  	numbersep=15pt,
+  	numberstyle=\tiny,
+  	rulecolor=\color{ltgray},
+  	showspaces=false,
+  	showstringspaces=false, 
+  	showtabs=false,
+  	stepnumber=1,
+  	tabsize=3,
+}
+\begin{lstlisting}[caption=Script .sql para crear la BD.]
     /*Creamos tablespaces*/
 create tablespace administracion datafile 'administracion.dbf' size 1M autoextend on;
 create tablespace taller datafile 'taller.dbf' size 1M autoextend on;
@@ -287,10 +315,10 @@ insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('VALEO','045437',149.90,2,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/jpg/zoom/21/valeo_headlamp_045437_01.jpg',4);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('VAN WEZEL','5216962',70.20,4,'Faro principal (faro delantero)','https://oscaro.media/catalog/images/bmp/zoom/36/k5216961.jpg',4);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('HERTH+BUSS ELPARTS','89901311',17.40,2,'Lámpara incandescente, luz trasera (bombilla) x10','https://oscaro.media/catalog/images/jpg/normal/72/89901311.jpg',4);
-insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('PHILIPS','69741430',11.10,4,'Lámpara (bombilla). 2 ✕ WY21 W VISION','https://oscaro.media/catalog/images/oscjpg/zoom/75/philips_pack_pr_wy21w_69741430_12071b2_s_emea_16.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('PHILIPS','69741430',11.10,4,'Lámpara (bombilla). 2 x WY21 W VISION','https://oscaro.media/catalog/images/oscjpg/zoom/75/philips_pack_pr_wy21w_69741430_12071b2_s_emea_16.jpg',4);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('HELLA','8GH 008 417-001',6.60,15,'Lámpara (bombilla) x 10','https://oscaro.media/catalog/images/jpg/zoom/2/k1948.jpg',4);
-insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('OSRAM','64132ULT-02B',11.60,10,'Lámpara (bombilla) 2 ✕ H6W ULTRA LIFE','https://oscaro.media/catalog/images/jpg/zoom/67/617121-p.jpg',4);
-insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('PHILIPS','5547730',2.10,1,'Lámpara (bombilla) 2 ✕ R10W VISION','https://oscaro.media/catalog/images/oscjpg/zoom/75/philips_pack_pr_r10w_05547730_12814b2_s_emea_16.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('OSRAM','64132ULT-02B',11.60,10,'Lámpara (bombilla) 2 x H6W ULTRA LIFE','https://oscaro.media/catalog/images/jpg/zoom/67/617121-p.jpg',4);
+insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('PHILIPS','5547730',2.10,1,'Lámpara (bombilla) 2 x R10W VISION','https://oscaro.media/catalog/images/oscjpg/zoom/75/philips_pack_pr_r10w_05547730_12814b2_s_emea_16.jpg',4);
 
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('TUDOR','TB450',89.90,1,'Batería 45 Ah','https://oscaro.media/catalog/images/jpg/zoom/212/tb450new%20copie.jpg',5);
 insert into PIEZAS(MARCA,MODELO,PRECIO,STOCK,DESCRIPCION,URL,ID_CATEGORIA)VALUES ('NIPPON','U540L17B',76.80,10,'Batería 50 Ah','https://oscaro.media/catalog/images/jpg/zoom/440/u540l17ba.jpg',5);
@@ -395,6 +423,5 @@ insert into vehiculo(MODELO,COLOR,AÑO,MATRICULA,ID_CLIENTE)VALUES(
 insert into vehiculo(MODELO,COLOR,AÑO,MATRICULA,ID_CLIENTE)VALUES(
     'REANAULT','BLANCO',TO_DATE('2012','yyyy'),'7839OPL',9
 );
-
 
 \end{lstlisting}
