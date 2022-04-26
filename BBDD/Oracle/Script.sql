@@ -15,7 +15,7 @@ create user mech4 identified by "mech4";
 alter user mech4 default tablespace taller;
 create user mech5 identified by "mech5";
 alter user mech5 default tablespace taller;
-
+create user websiteVisit identified by "webVisitor";
 
 
 /*Modificamos los perfiles por defecto para que no pidan cambiar password*/
@@ -32,6 +32,10 @@ alter user mech3 PROFILE sesiones_mecanico;
 alter user mech4 PROFILE sesiones_mecanico;
 alter user mech5 PROFILE sesiones_mecanico;
 
+/*Modificamos perfil de visitante web*/
+create profile sesiones_web LIMIT
+sessions_per_user UNLIMITED;
+alter user websiteVisit PROFILE sesiones_web;
 
 
 /*Cremos las tablas, triggers y costraints*/
@@ -202,6 +206,8 @@ revoke delete on categorias from rol_mecanico;
 grant insert on Realiza to rol_mecanico;
 grant select on EMPLEADO to rol_mecanico;
 
+grant select on piezas to websiteVisit;
+grant select on categorias to websiteVisit;
 
 grant rol_administrador to Jefe;
 grant rol_mecanico to mech1;
