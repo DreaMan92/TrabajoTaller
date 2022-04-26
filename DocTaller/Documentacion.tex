@@ -20,6 +20,9 @@
 \usepackage{listings}
 \usepackage{color}
 
+\usepackage{minted}
+
+
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -51,7 +54,7 @@
 \author{Martin Fagoaga y Gonzalo Álvarez}
 \date{2022}
 \begin{document}
-\maketitle
+\maketitle 
 \clearpage
 \tableofcontents
 \clearpage
@@ -63,7 +66,7 @@
 \subsection{Objetivos}
 \subsection{Contextualización del proyecto}
 \subsection{Análisis}
-\subsection{Diseño}
+\subsection{Diseño} 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{pexels-cottonbro-4480505.jpg}
@@ -73,6 +76,7 @@
 \subsection{FOL}
 \section{FASE 2: IMPLEMENTACIÓN Y PRUEBAS}
 \subsection{DDBB: Código SQL}
+\inputminted[]{sql}{./Script.sql}
 \subsection{Programación: Clases y métodos}
 \subsubsection{Modelos}
 \paragraph{Cliente}
