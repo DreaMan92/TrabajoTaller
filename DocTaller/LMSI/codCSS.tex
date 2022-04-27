@@ -1,0 +1,772 @@
+\begin{lstlisting}[caption=nav.css (LMSI)]
+    
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+
+  }
+  ul.topnav li {float: left;}
+  
+  ul.topnav li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+  
+  ul.topnav li a:hover:not(.active) {
+    background-color: #111;
+    color:white!important;
+  }
+  
+  ul.topnav li a.active {background-color: #3e8487a3;}
+  
+  ul.topnav li.right {float: right;}
+  
+  @media screen and (max-width: 630px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=footer.css (LMSI)]
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    text-align: center;
+}
+
+.footerSup {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding: 1em;
+}
+
+.footerCat {
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    list-style: none;
+}
+
+.footerCat>* {
+    list-style: none;
+}
+
+.footerInf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+    border-top: 1px solid cadetblue;
+    width: 80%
+}
+
+.terminos {
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+.centro {
+    border-right: 1px solid rgb(119, 119, 119);
+    border-left: 1px solid rgb(119, 119, 119);
+}
+
+@media (max-width:600px) {
+    .footerSup {
+        flex-direction: column;
+    }
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=general.css (LMSI)]
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h6 {
+    font-size: 1.0em;
+}
+
+img {
+    max-width: 100%;
+}
+\end{lstlisting}
+\clearpage
+
+\begin{lstlisting}[caption=index.css (LMSI)]
+section {
+    display: grid;
+    grid-template-columns: auto;
+    color: inherit;
+    padding: 2em;
+}
+
+main {
+    background-color: rgba(95, 158, 160, 0.096);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav{
+    background-color: white!important;
+}
+header {
+    height: 70vh;
+    background-image: url('/imagenes/fordFi.webp');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+}
+
+.titulo {
+
+    padding: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: 400;
+    line-height: 60px;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Montserrat',sans-serif;
+    font-style: italic;
+    color:cadetblue!important;
+}
+.subtitulo{
+    background-color: cadetblue;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color:white!important;
+    padding: 0.5rem;
+    font-family: 'Montserrat',sans-serif;
+    font-style: italic;
+}
+
+@media (min-width:600px) {
+    nav {
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 100%;
+    }
+}
+
+.seccionTexto {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 2em;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    background-color: rgba(236, 236, 236, 0.13);
+    box-shadow: 1em 1em 1em rgba(236, 236, 236, 0.6);
+}
+
+.cuadroImagenes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1em;
+    align-items: center;
+    background-color: white;
+    padding: 1em;
+}
+
+.cuadroImagenes>img {
+    margin-top: 1em;
+}
+@media (min-width:800px){
+    section{
+        width: 70%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=mecanicos.css (LMSI)]
+.empleados {
+    
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    text-align: center;
+  
+}
+main{
+    background-color: rgba(95, 158, 160, 0.096);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h2{
+    text-align: center;
+    padding-top: 1em;
+    font-weight: 300;
+}
+img {
+    width: 100%;
+    object-fit: cover;
+    margin: 1em;
+
+}
+
+.info {
+    text-align: center;
+    box-shadow: 1em 1em 1em rgba(236, 236, 236, 0.6);
+    padding: 2em;
+}
+.filosofia{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(92, 152, 155, 0.041);
+   padding: 1em;
+}
+.info>*{
+    text-align: center;
+    list-style-type: none;
+}
+.narrow{
+    width: 80%;
+}
+h6 {
+    padding: 1em;
+}
+h3{
+    font-weight: 300;
+}
+@media (min-width:800px){
+    section{
+        width: 70%;
+    }
+    .empleados{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=servicios.css (LMSI)]
+h2 {
+    text-align: center;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    color: white!important;
+    font-style: italic;
+    background-image: url('/imagenes/servicios.jpg');
+    background-size: cover
+}
+
+nav {
+    background-color: rgba(211, 211, 211, 0.253);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tarjetas {
+    display: grid;
+    
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.tarjeta {
+    background-color: rgba(211, 211, 211, 0.253);
+    font-size: 0.9em;
+    padding: 1em;
+    margin: 1em;
+}
+
+.tarjeta:hover {
+    box-shadow: 1em 1em 1em rgba(160, 160, 160, 0.596);
+}
+
+h5 {
+    font-size: 2em;
+    font-weight: 300;
+    padding-bottom: 1em;
+}
+
+@media (min-width:800px) {
+    .tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        width: 70%;
+    }
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=location.css (LMSI)]
+    header {
+            height: 70vh;
+            background-image: url('/imagenes/pexels-cottonbro-4480505.jpg');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .blackcover {
+            background-color: rgba(0, 0, 0, 0.589);
+            position: absolute;
+            height: 100%;
+            top: 0;
+            width: 100%;
+        }
+
+        .titulo {
+            padding: 0.5rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            font-weight: 400;
+            line-height: 60px;
+            background-color: rgb(255, 255, 255);
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            color: cadetblue !important;
+            z-index: 1;
+        }
+
+        .subtitulo {
+            background-color: cadetblue;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            color: white!important;
+            padding: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            z-index: 1;
+        }
+        /*----------------------------*/
+
+        .barraColor {
+            width: 100%;
+            height: 1vh;
+            background-color: rgba(95, 158, 160, 0.738);
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
+        /*--------------------------------------------------*/
+
+        .seccionForm {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background-size: cover;
+        }
+
+        .imgseccionForm {
+            width: 100%;
+            height: 100%;
+            opacity: 0.75;
+            position: absolute;
+            size: cover;
+        }
+
+        .seccionForm>h2 {
+            width: 75%;
+            font-size: 5vw;
+            color: white;
+            text-shadow: 0 0 5px black;
+            padding-top: 1em;
+        }
+
+        .seccionForm>h3 {
+            width: 60%;
+            font-size: 3.5vw;
+            color: white;
+            text-shadow: 0 0 5px black;
+        }
+        /*------------------form-----------------*/
+
+        .formulario {
+            width: 80%;
+            height: fit-content;
+            padding: 4em;
+            position: relative;
+        }
+
+        form {
+            width: 80%;
+            height: fit-content;
+            margin: auto;
+            background-color: rgba(72, 118, 120, 0.768);
+            padding: 1em;
+            padding-top: 3em;
+            margin-bottom: 5em;
+            box-sizing: border-box;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            text-align: center;
+            align-items: center;
+        }
+
+        form h3 {
+            font-size: 4em;
+            color: white;
+            text-shadow: 0 0 5px black;
+            padding-bottom: 1em;
+        }
+
+        input {
+            width: 30%;
+            max-width: 90%;
+            margin-bottom: 2em;
+            padding: 1%;
+            box-sizing: border-box;
+            font-size: 1em;
+            border: none;
+        }
+
+        textarea {
+            width: 90%;
+            height: 100%;
+            min-width: 90%;
+            max-width: 90%;
+            min-height: 35%;
+            max-height: 40%;
+            /*max-height se puede modificar a gusto*/
+            font-size: 1em;
+        }
+
+        #boton {
+            margin-top: 5%;
+            background-color: black;
+            color: white !important;
+            padding: 1em;
+            border: 1px solid black;
+        }
+
+        #boton:hover {
+            box-shadow: 1em 1em 1em rgba(160, 160, 160, 0.596);
+            border: 1px solid rgb(66, 111, 112);
+            background-color: rgba(114, 186, 189, 0.911);
+            cursor: pointer;
+        }
+        /*------------seccionInfo--------------------------*/
+
+        .seccionInfo {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info {
+            height: 25%;
+            width: 33%;
+            padding: 2em;
+            align-items: center;
+            text-align: center;
+        }
+
+        .info>* {
+            list-style: none;
+            text-decoration: none;
+            padding: 1em;
+        }
+
+        .info>img {
+            width: 100%;
+            height: 100%;
+            padding: 1em;
+        }
+
+        .info>ul>* {
+            padding: 0.5em;
+        }
+
+        .info:hover {
+            box-shadow: 1em 1em 1em rgba(160, 160, 160, 0.596);
+            border: 1px solid rgb(66, 111, 112);
+            background-color: rgba(114, 186, 189, 0.187);
+        }
+        /*----------seccionMapa------------*/
+
+        .mapa {
+            width: 100%;
+            height: 80vh;
+            background-image: url('/imagenes/taller2.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .marcoMapa {
+            width: 90%;
+            height: 60vh;
+            position: relative;
+            padding: 1.5em;
+            border-radius: 1em;
+            border: solid 1px black;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        /*---------------MediaQueries---------------*/
+
+        @media screen and (max-width:600px) {
+            .formulario {
+                width: 90%;
+                padding: 1em;
+            }
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 1em;
+            }
+            form h3 {
+                font-size: 2em;
+                color: white;
+                text-shadow: 0 0 5px black;
+                padding-bottom: 1em;
+            }
+            input {
+                width: 100%;
+            }
+            textarea {
+                width: 100%;
+                max-width: 90%;
+            }
+            #boton {
+                width: 80;
+                margin-top: 5%;
+                background-color: black;
+                color: white !important;
+                padding: 20px;
+            }
+            .seccionInfo {
+                flex-direction: column;
+            }
+            .info {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width:1200px) {
+            .info>* {
+                font-size: 1.5em;
+            }
+        }
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=Productos.css (LMSI)]
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  
+
+}
+.menu{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid cadetblue;
+}
+.menu>div{
+    margin: 1em;
+}
+
+.menuMarcas:hover .contenidoMarcas {
+    display: flex;
+    flex-direction: column;
+  }
+.menuCat:hover .contenidoCateg{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenidoMarcas,.contenidoCateg{
+    list-style-type: none;
+    display: none;
+    text-align: center;
+    font-size: 1.1em;
+}
+.container{
+    text-align: center;
+    margin: 1em;
+    flex-grow: 1;
+}
+.titulo{
+    margin: 1em;
+    font-weight:400;
+    font-family: 'Montserrat', sans-serif;
+}
+h6{
+text-align: center;}
+@media (min-width:800px) {
+    main{
+        flex-direction: row;
+    }
+    .contenidoMarcas, .contenidoCateg{
+        display: flex;
+        flex-direction: column;
+    }
+    .menu{
+        border-right: 1px solid cadetblue;
+        border-bottom: none;
+    }
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=tarjetaProducto.css (LMSI)]
+  .stacked {
+    display: grid;
+  }
+  
+  .stacked > * {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  
+  .product-grid {
+    display: grid;
+    
+    /* Poner esto en media query para pantallas grandes.
+    max-width: 50%;
+    */
+    gap: 0.125rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  }
+  
+  .card {
+    aspect-ratio: 1 / 1.5;
+  }
+  
+  .card_content {
+    background: white;
+    align-self: end;
+    margin: 0.5rem 0.5rem 2rem;
+    padding: 0.5rem;
+    box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 0.1);
+  }
+  
+  .card_title {
+    font-size: 1.25rem;
+    line-height: 1.1;
+    
+  }
+  .card_title>*{
+    color:cadetblue;
+    font-family: 'Montserrat',sans-serif;
+  }
+  
+  .card_price {
+    font-size: 1.75rem;
+  }
+  
+  .card_img {
+    width: 100%;
+    aspect-ratio: 1 / 1.25;
+    object-fit: cover;
+  }
+  .card_description{
+    color: rgb(150, 150, 150);
+  }
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=PaginaProducto.css (LMSI)]
+body{
+    display:flex;
+    height: 100vh;
+    flex-direction: column;
+}
+main{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat',sans-serif; 
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    
+}
+
+.container > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2em;
+    height: 100%;
+}
+
+.textoProducto{
+    background-color: rgba(95, 158, 160, 0.096);
+}
+.textoProducto >*{
+    margin:1rem;
+}
+
+.botonContacto{
+    font-size: large;
+    font-weight: 600;
+    margin:2em;
+    padding: 1em;
+    border: 1px solid black;
+}
+.modelo{
+    font-style: italic;
+    color: gray;
+}
+.precio{
+    font-size: xx-large;
+}
+.botonContacto:hover{
+    
+    background-color: black;
+    color:white;
+    transition: all ease-in-out 0.2s;
+}
+
+
+@media (min-width:800px){
+    .container{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        width: 70%;
+    }
+}
+\end{lstlisting}
+\clearpage

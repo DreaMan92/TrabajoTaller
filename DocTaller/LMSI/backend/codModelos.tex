@@ -1,0 +1,146 @@
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+
+\lstset{language=Java,
+backgroundcolor=\color{white},
+inputencoding=utf8,
+escapeinside={\%*}{*)},
+literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+breakatwhitespace=false,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+\begin{lstlisting}[caption=Categoria.java (LMSI)]
+package com.Taller.WebTaller.modelos;
+
+public class Categoria {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    private String nombre;
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=Marca.java (LMSI)]
+  
+package com.Taller.WebTaller.modelos;
+
+public class Marca {
+
+    private String marca;
+    private int cantidad;
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+}
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[caption=Pieza.java (LMSI)]
+package com.Taller.WebTaller.modelos;
+
+public class Pieza {
+    private int id_pieza;
+    private String marca;
+    private String modelo;
+    private float precio;
+    private String url;
+    private String descripcion;
+    private int stock;
+    private String categoria;
+
+    public int getId_pieza() {
+        return id_pieza;
+    }
+
+    public void setId_pieza(int id_pieza) {
+        this.id_pieza = id_pieza;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+}
+\end{lstlisting}
+\clearpage

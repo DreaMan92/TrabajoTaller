@@ -51,3 +51,7 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
 ## Martes 26/04/2022 (2 horas Martin + 1 Gonzalo??)
  - Modificar la página de donde encontrarnos (Gonzalo)
  - Documentación 
+
+## Miercoles 27/04/2022 (1hora clase + 1 hora casa)
+ - Documentar en casa 
+ - En clase poner en marcha el .jar en el servidor y crear el servicio.
