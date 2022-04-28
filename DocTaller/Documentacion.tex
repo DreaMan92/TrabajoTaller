@@ -64,9 +64,8 @@
 \clearpage
 \listoffigures
 \clearpage
-\clearpage
-\lstlistoflistings
-\clearpage
+
+
 }
 
 \section{FASE 1: ANALISIS Y DISEÑO}
@@ -194,7 +193,7 @@ Después de crear las tablas hemos establecido las relaciones entre ellas y hemo
 Hemos limitado los permisos que tienen los mecánicos en las tablas, ya que en nuestro diseño no deben ser capaces de modificar algunos parámetros como pueden ser los precios de las piezas. También hemos concedido permiso para
 realizar select en las tablas de piezas y categorías al usuario de la web, ya que son las únicas tablas que debe ver, y en ningún caso editar.\\ 
 Finalmente, hemos insertado datos de prueba en todas las tablas para comprobar la correcta creación de estas y tener una base sobre la que trabajar.\\ 
-Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref{appendix:BBDD}.
+Todas las ordenes sql realizadas están en el script disponible en el \href{https://github.com/DreaMan92/TrabajoTaller/blob/main/BBDD/Oracle/Script.sql}{\color{red}{repositorio de github}}.
 }
 
 \subsection{Programación: Clases y métodos}
@@ -208,7 +207,7 @@ Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref
     que hace uso de la librería \href{https://github.com/itext}{\color{red}{iText}} para crear una factura en formato .pdf.
     \item UI: En este paquete están las interfaces gráficas con sus controladores. 
   \end{itemize}
-  El código fuente de todo el programa se puede ver en el Anexo \ref{appendix:programacion}.
+  El código fuente de todo el programa se puede ver en el \href{https://github.com/martinfgar/TallerProgramacion}{\color{red}{repositorio de github del proyecto}}.
   \subsubsection{Capturas de Ejecución}
   En las siguientes capturas podemos ver la ejecución del programa:\\
   \begin{figure}[H]
@@ -289,17 +288,70 @@ Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref
 
 \subsection{Lenguaje de Marcas: conjunto de ficheros}
 La página web consta de 4 páginas estáticas, y otras 2 plantillas que se renderizan en el servidor.\\
+Para el renderizado de estas páginas utilizamos \href{https://www.thymeleaf.org/}{\color{red}{Thymeleaf}}, junto al backend programado en Java utilizando Spring.\\
+Todo el código fuente se puede consultar en el \href{https://github.com/martinfgar/WebTaller}{\color{red}{repositorio del proyecto}}.
 \subsubsection{Páginas estáticas}
 \paragraph{index.html}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/CapturasWeb/index.png}
+  \caption{index.html}
+\end{figure}
 \paragraph{location.html}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/CapturasWeb/dondeEncontrarnos.png}
+  \caption{location.html}
+\end{figure}
 \paragraph{mecanicos.html}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{LMSI/CapturasWeb/SobreNosotros.png}
+  \caption{mecanicos.html}
+\end{figure}
 \paragraph{servicios.html}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/CapturasWeb/Servicios.png}
+  \caption{servicios.html}
+\end{figure}
 \subsubsection{Páginas Dinamicas}
-\paragraph{PaginaProducto.html}
+
 \paragraph{Productos.html}
-
-
-
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/CapturasWeb/Productos.png}
+  \caption{Productos.html}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/CapturasWeb/ProductosFiltrado.png}
+  \caption{Productos.html según categoría}
+\end{figure}
+\paragraph{PaginaProducto.html}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/CapturasWeb/Producto.png}
+  \caption{Producto.html}
+\end{figure}
+\subsubsection{CSS}
+Todas estas páginas las hemos decorado utilizando CSS puro, sin utilizar ninguna librería como Bootstrap. Algunos ficheros .css son de uso común entre distintas páginas, ya que decoran la barra de navegación o el footer. \\
+Los ficheros utilizados son:\\
+\begin{itemize}
+  \item nav.css
+  \item footer.css
+  \item general.css
+  \item index.css
+  \item mecanicos.css
+  \item servicios.css
+  \item location.css
+  \item Productos.css
+  \item tarjetaProducto.css
+  \item PaginaProducto.css
+\end{itemize}
+\subsubsection{Imagenes e Iconos}
+Las imagenes utilizadas provienen de nuestro servidor (previamente obtenidas de la página de imagenes de uso libre \href{https://www.pexels.com/es-es/}{\color{red}{Pexels}}), salvo en el caso de las imagenes de los productos. En esos casos, las url provienen de la página web \href{https://www.oscaro.es/}{\color{red}{Oscaro}}, que a su vez utiliza imágenes cedidas por el fabricante.\\
+En un caso de un taller real, contactariamos con los proveedores para hacer uso de imagenes que ellos dispongan, y almacenarlas en nuestro servidor.\\ 
 \subsection{SSII: Instalación y configuración y puesta en marcha.} 
 \label{subsection:Sistemas}
 \subsubsection{Hardware}
@@ -422,35 +474,5 @@ Para poner en marcha la base de datos en el servidor, primero hemos instalado do
 \subsection{Inglés}
 \subsection{Consideraciones}
 \subsection{Bibliografía}
-\appendix
-\begin{appendices}
-  \section{BBDD}\label{appendix:BBDD}
-  \input{bbdd/ScriptSql}
-  \section{Programación}\label{appendix:programacion}
-  \subsection{Paquete Modelos}
-  \input{program/codModelos}
-  \subsection{Paquete DAO}
-  \input{program/codDao}
-  \subsection{Paquete System}
-  \input{program/codSystem}
-  \subsection{Paquete UI}
-  \input{program/codUI}
-  \section{LMSI}\label{appendix:LMSI}
-  \subsection{HTML}
-  \input{LMSI/codHTMLCSS}
-  \subsection{CSS}
-  \input{LMSI/codCSS}
-  \subsection{Java Backend}
-  \subsubsection{Modelos}
-  \input{LMSI/backend/codModelos}
-  \subsubsection{DAO}
-  \input{LMSI/backend/codDao}
-  \subsubsection{Service}
-  \input{LMSI/backend/codService}
-  \subsubsection{API}
-  \input{LMSI/backend/codApi}
-  \subsubsection{main}
-  \input{LMSI/backend/main}
-\end{appendices}
 
 \end{document}

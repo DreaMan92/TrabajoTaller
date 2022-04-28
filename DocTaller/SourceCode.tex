@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,activeacute]{babel}
+\usepackage{titlesec}
+\usepackage[obeyspaces]{url}
+\usepackage[a4paper, margin=1in]{geometry}
+\titleformat{\section}
+  {\normalfont\fontsize{14}{14}\bfseries}{\thesection}{1em}{}
+\titlespacing{\paragraph}{0pt}{1.5em}{.5em}[]
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\inputencoding{utf8}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png,.pdf,.jpg,.webp}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}%
+\usepackage[toc,title,page]{appendix}
+\addto\captionsspanish{%
+  \renewcommand\appendixname{Anexo}
+  \renewcommand\appendixpagename{Anexos}
+  \renewcommand\appendixtocname{Anexos}
+}
+\usepackage{listingsutf8}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand\lstlistlistingname{Códigos fuente}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black
+}
+
+
+\title{Taller de Coches: Código Fuente}
+\author{Martin Fagoaga y Gonzalo Álvarez}
+\date{2022}
+\begin{document}
+\maketitle 
+\clearpage
+\lstlistoflistings
+\clearpage
+\appendix
+\begin{appendices}
+  \section{BBDD}\label{appendix:BBDD}
+  \input{bbdd/ScriptSql}
+  \section{Programación}\label{appendix:programacion}
+  \subsection{Paquete Modelos}
+  \input{program/codModelos}
+  \subsection{Paquete DAO}
+  \input{program/codDao}
+  \subsection{Paquete System}
+  \input{program/codSystem}
+  \subsection{Paquete UI}
+  \input{program/codUI}
+  \section{LMSI}\label{appendix:LMSI}
+  \subsection{HTML}
+  \input{LMSI/codHTMLCSS}
+  \subsection{CSS}
+  \input{LMSI/codCSS}
+  \subsection{Java Backend}
+  \subsubsection{Modelos}
+  \input{LMSI/backend/codModelos}
+  \subsubsection{DAO}
+  \input{LMSI/backend/codDao}
+  \subsubsection{Service}
+  \input{LMSI/backend/codService}
+  \subsubsection{API}
+  \input{LMSI/backend/codApi}
+  \subsubsection{main}
+  \input{LMSI/backend/main}
+\end{appendices}
+\end{document}
