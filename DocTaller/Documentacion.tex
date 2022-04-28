@@ -1,0 +1,296 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,activeacute]{babel}
+\usepackage{titlesec}
+\usepackage[obeyspaces]{url}
+\usepackage[a4paper, margin=1in]{geometry}
+\titleformat{\section}
+  {\normalfont\fontsize{14}{14}\bfseries}{\thesection}{1em}{}
+\titlespacing{\paragraph}{0pt}{1.5em}{.5em}[]
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\inputencoding{utf8}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png,.pdf,.jpg,.webp}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{caption}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}%
+\usepackage[toc,title,page]{appendix}
+\addto\captionsspanish{%
+  \renewcommand\appendixname{Anexo}
+  \renewcommand\appendixpagename{Anexos}
+  \renewcommand\appendixtocname{Anexos}
+}
+\usepackage{listingsutf8}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand\lstlistlistingname{Códigos fuente}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black
+}
+
+
+\title{Taller de Coches}
+\author{Martin Fagoaga y Gonzalo Álvarez}
+\date{2022}
+\begin{document}
+\maketitle 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{pexels-cottonbro-4480505.jpg}
+\end{figure}
+\clearpage
+
+{
+  \hypersetup{ linkcolor=black}
+  \tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\clearpage
+\lstlistoflistings
+\clearpage
+}
+
+\section{FASE 1: ANALISIS Y DISEÑO}
+\subsection{Introducción: AppTaller}
+\subsection{Objetivos}
+\subsection{Contextualización del proyecto}
+\subsection{Análisis}
+\subsection{Diseño} 
+\subsection{Planificación semanal}
+\subsection{FOL}
+\section{FASE 2: IMPLEMENTACIÓN Y PRUEBAS}
+{
+  \lstset{%
+  	backgroundcolor=\color{white},
+      inputencoding=utf8,
+    escapeinside={\%*}{*)},
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+  	basicstyle=\footnotesize,
+  	breakatwhitespace=false,
+  	breaklines=true,
+    nolol=true,
+  	captionpos=b,
+  	commentstyle=\color{dkgreen},
+  	deletekeywords={...},
+  	escapeinside={\%*}{*)},
+  	extendedchars=true,
+  	frame=single,
+  	keepspaces=true,
+  	keywordstyle=\color{blue},
+  	language=SQL,
+  	morekeywords={*,modify,MODIFY,...},
+  	numbers=left,
+  	numbersep=15pt,
+  	numberstyle=\tiny,
+  	rulecolor=\color{ltgray},
+  	showspaces=false,
+  	showstringspaces=false, 
+  	showtabs=false,
+  	stepnumber=1,
+  	tabsize=3,
+}
+\subsection{DDBB: Código SQL}
+Para ver la instalación de la BBDD de oracle, referiros a la sección de Sistemas Informáticos, en este apartado nos limitaremos a describir el código sql ejecutado en la BD.\\
+Para poner en marcha nuestra base de datos, primero hemos creado dos datafiles en los que se dividirá el contenido. \\ Luego hemos creado un usuario de jefe o administrador, y 5 cuentas para los mecánicos, y hemos modificado sus perfiles,
+permitiendo tan solo 1 inicio de sesión simultaneo por usuario. También hemos creado un usuario para los visitantes de la web, este usuario tiene la posibilidad de crear sesiones simultaneas ilimitadas. \\ 
+Luego hemos creado las tablas que podemos observar en los diagramas. Cabe destacar que para tener IDs autogenerados ascendentes, hemos utilizado la siguiente secuencia:\\
+\begin{lstlisting}{sql}
+  CREATE SEQUENCE CLIENTES_SEQ START WITH 1;
+
+  CREATE OR REPLACE TRIGGER CLIENTES_IDS BEFORE INSERT ON CLIENTE FOR EACH ROW
+  BEGIN SELECT CLIENTES_SEQ.NEXTVAL INTO :NEW.ID_CLIENTE FROM DUAL;
+  END;
+\end{lstlisting}
+Después de crear las tablas hemos establecido las relaciones entre ellas y hemos añadido algún constraint como puede ser el formato de DNI de un cliente o el formato de un correo electrónico.\\ 
+Hemos limitado los permisos que tienen los mecánicos en las tablas, ya que en nuestro diseño no deben ser capaces de modificar algunos parámetros como pueden ser los precios de las piezas. También hemos concedido permiso para
+realizar select en las tablas de piezas y categorías al usuario de la web, ya que son las únicas tablas que debe ver, y en ningún caso editar.\\ 
+Finalmente, hemos insertado datos de prueba en todas las tablas para comprobar la correcta creación de estas y tener una base sobre la que trabajar.\\ 
+Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref{appendix:BBDD}.
+}
+
+\subsection{Programación: Clases y métodos}
+  En nuestro programa hemos decidido separar la lógica de negocio de las interfaces.\\ 
+  Hemos dividido las clases en 4 paquetes:\\
+  \begin{itemize}
+    \item Modelos: En este paquete están las clases que representan las entidades del negocio. 
+    \item DAO: En este paquete están las clases que se encargan de realizar la conexión con la base de datos, y realizar las querys necesarias.
+    \item System: En este paquete están las clases que contienen los metodos que realizan las acciones relacionadas con el negocio, como buscar una factura concreta o crear una reparacion. En este paquete hemos creado una clase llamada CreadorPDF 
+    que hace uso de la librería \href{https://github.com/itext}{\color{red}{iText}} para crear una factura en formato .pdf.
+    \item UI: En este paquete están las interfaces gráficas con sus controladores. 
+  \end{itemize}
+  El código fuente de todo el programa se puede ver en el Anexo \ref{appendix:programacion}.
+
+\subsection{Lenguaje de Marcas: conjunto de ficheros}
+\subsection{SSII: Instalación y configuración y puesta en marcha.} 
+\subsubsection{Hardware}
+En nuestro caso hemos optado por equipar el taller con 4 portátiles con el SO Windows. 1 de ellos
+estaría colocado en la oficina y será el portátil del administrador, los otros 3 estarán colocados 
+en los puestos de reparación de vehículos del taller.\\ La conexión a internet se realizará via Wi-Fi, utilizando el Wi-Fi emitido por el router que estará en la oficina. Hemos optado 
+por no utilizar cableado ya que creemos que hoy en día el Wi-Fi aporta suficiente fiabilidad y añadir cableado al taller podría provocar molestias a los empleados a la hora de utilizar 
+maquinaría pesada y mover piezas por el taller.\\
+Debido a las limitadas necesidades que tendrán estos portátiles, hemos optado por el modelo \href{https://www.pccomponentes.com/acer-travelmate-p2-tmp214-53-37at-intel-core-i3-1115g4-8gb-256gb-ssd-14}{\color{red}{{Acer Travelmate P2}}}.\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{CapturasSistemas/portatil.png}
+  \caption{Portátil Acer Travelmate P2}
+  \caption*{Fuente: \href{https://www.pccomponentes.com/acer-travelmate-p2-tmp214-53-37at-intel-core-i3-1115g4-8gb-256gb-ssd-14}{https://www.pccomponentes.com/}}
+\end{figure}
+\begin{itemize}
+  \item Procesador: Intel Core i3-1115g4
+  \item Memoria Ram: 8 GB DDR4
+  \item Almacenamiento: 256 GB SSD PCIe
+  \item Conectividad: \begin{itemize}
+    \item Gigabit Ethernet
+    \item Intel Wi-Fi 6 AX201 (802.11)
+    \item Bluetooth
+  \end{itemize}
+  \item SO: Windows 10 Home 64 Bits
+\end{itemize}
+La base de datos y la página web la alojaremos en un VPS con una instalación del SO Ubuntu Server. En nuestro caso hemos optado por contratar el servidor \href{https://www.arsys.es/servidores/vps}{\color{red}{Arsys VPS M}},
+ya que su centro de datos está en España, con lo que tendriamos una latencia más baja que con otras opciones. \\
+Finalmente, para la línea telefónica y de internet hemos optado por contratar la operadora Guuk. Con una velocidad de 600mb simétricos, creemos que es suficiente para las necesidades del taller. \\
+
+Presupuesto total de hardware/Software: \\
+\begin{itemize}
+  \item Portátiles: 1864.12€
+  \item Servidor: 120€/Año
+  \item Dominio: 15€/Año
+  \item Internet: 504€/Año
+\end{itemize}
+\subsubsection{Software}
+{
+En los portátiles con Windows 10, instalariamos el programa AppTaller creado por nosotros. No haría falta nada más para tener los ordenadores operativos. \\ 
+\paragraph{Instalación SGDB}
+Para poner en marcha la base de datos en el servidor, primero hemos instalado docker en el mismo. Para ello hemos ejecutado los siguientes comandos: 
+  \lstset{%
+  	backgroundcolor=\color{white},
+    inputencoding=utf8,
+    language=bash,
+    escapeinside={\%*}{*)},
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+  	basicstyle=\footnotesize,
+  	breakatwhitespace=false,
+  	breaklines=true,
+    nolol=true,
+  	captionpos=b,
+  	commentstyle=\color{dkgreen},
+  	deletekeywords={...},
+  	escapeinside={\%*}{*)},
+  	extendedchars=true,
+  	frame=single,
+  	keepspaces=true,
+  	keywordstyle=\color{blue},
+  	morekeywords={*,modify,MODIFY,...},
+  	numbers=left,
+  	numbersep=15pt,
+  	numberstyle=\tiny,
+  	rulecolor=\color{ltgray},
+  	showspaces=false,
+  	showstringspaces=false, 
+  	showtabs=false,
+  	stepnumber=1,
+  	tabsize=3,
+  }
+  \begin{lstlisting}
+    sudo curl -fsSL sudo curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo chmod +x get-docker.sh
+    ./get-docker.sh
+  \end{lstlisting}
+  Despues hemos añadido el usuario al grupo de docker, hemos creado los directorios donde se guardarán 
+  los datos, y hemos creado el contenedor que tendrá la SGDB.
+  \begin{lstlisting}
+    sudo usermod -aG docker 1daw3
+    mkdir Oracle
+    cd Oracle 
+    mkdir data 
+    docker pull epiclabs/docker-oracle-xe-11g
+    sudo docker run -d -v /home/1daw3/Oracle/data:/u01/app/oracle --name=TallerDB -p 1521:1521 --restart unless-stopped -e ORACLE_ALLOW_REMOTE=true -e ORACLE_PASSWORD=1daw3 epiclabs/docker-oracle-xe-11g
+  \end{lstlisting}
+  Hemos comprobado que el contenedor está en marcha con el siguiente comando: 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{CapturasSistemas/oracleEnMarcha.PNG}
+    \caption{Comprobación de que el SGDB está en marcha.}
+  \end{figure}
+  \paragraph{Instalación Página/Servidor Web}
+  En nuestro caso, hemos creado una aplicacion java (.jar) que contiene un servidor web Apache Tomcat incrustado. Esta 
+  aplicación sirve el contenido HTML y CSS a traves del puerto 80. Hemos decidido crear un servicio de systemd para tener 
+  el programa ejecutando en todo momento. Para ello hemos ejecutado los siguientes comandos: 
+  \begin{lstlisting}
+    sudo systemctl set-timezone Europe/Madrid
+  \end{lstlisting}
+  Con este comando hemos establecido el uso horario del servidor.
+  Luego hemos creado el fichero \path{/etc/systemd/system/paginaWeb.service} con el siguiente contenido: 
+  \begin{lstlisting}
+    [Unit]
+    Description=PaginaWebTaller
+    After=syslog.target
+
+    [Service]
+    User=root
+    ExecStart=/usr/bin/java -jar /home/1daw3/WebTaller-0.0.1-SNAPSHOT.jar
+
+    [Install]
+    WantedBy=multi-user.target  
+  \end{lstlisting}
+  Finalmente para activar este servicio hemos ejecutado los siguientes comandos:
+  \begin{lstlisting}
+    sudo systemctl daemon-reload
+    sudo systemctl enable paginaWeb.service
+    sudo systemctl start paginaWeb.service
+  \end{lstlisting}
+}
+\subsection{FOL: Riesgos Laborales}
+\subsection{Inglés}
+\subsection{Consideraciones}
+\subsection{Bibliografía}
+\appendix
+\begin{appendices}
+  \section{BBDD}\label{appendix:BBDD}
+  \input{bbdd/ScriptSql}
+  \section{Programación}\label{appendix:programacion}
+  \subsection{Paquete Modelos}
+  \input{program/codModelos}
+  \subsection{Paquete DAO}
+  \input{program/codDao}
+  \subsection{Paquete System}
+  \input{program/codSystem}
+  \subsection{Paquete UI}
+  \input{program/codUI}
+  \section{LMSI}\label{appendix:LMSI}
+  \subsection{HTML}
+  \input{LMSI/codHTMLCSS}
+  \subsection{CSS}
+  \input{LMSI/codCSS}
+  \subsection{Java Backend}
+  \subsubsection{Modelos}
+  \input{LMSI/backend/codModelos}
+  \subsubsection{DAO}
+  \input{LMSI/backend/codDao}
+  \subsubsection{Service}
+  \input{LMSI/backend/codService}
+  \subsubsection{API}
+  \input{LMSI/backend/codApi}
+  \subsubsection{main}
+  \input{LMSI/backend/main}
+\end{appendices}
+
+\end{document}
