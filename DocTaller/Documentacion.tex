@@ -76,6 +76,7 @@ Para ello utilizaremos los contenidos vistos en todas las asignaturas y los cone
 El programa debe ser de utilidad para la realización del trabajo del taller, y debería ayudar a mantener un flujo de 
 trabajo adecuado.
 \subsection{Contextualización del proyecto}
+\label{subsection:context}
 A la hora de desarrollar una aplicación para un taller mecánico, esta puede englobar todos los ámbitos que conllevan
 un taller o centrarse en algún área especifica. En nuestro caso, nos centraremos en lo que es puramente trabajo de taller,
 es decir, no pretendemos que nuestra aplicación tenga un uso contable, sino más bien que se trate de una aplicación de 
@@ -99,6 +100,14 @@ luz, y reduciendo así el consumo de luz del taller. \\ En cuanto al hardware y 
 y los portátiles cualquier sistema operativo en el que instalemos java.
 \subsection{Diseño} 
 \subsubsection{Diagramas}
+En la situación que hemos planteado en la sección \ref{subsection:context}, nos surgen los siguientes casos de uso de una aplicación para los empleados:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{misc/CasosDeUsoTaller.png}
+  \caption{Casos de uso de una aplicación de taller.}
+\end{figure}
+Debido a que a nosotros se nos demanda implementar un caso de uso, nos centraremos en desarrollar el caso de uso \textbf{reparar vehículo.}.
+En el apartado \ref{subsubsection:designClass} especificamos la estructura con la que desarrollaremos el programa e incluimos un diagrama de secuencia para este caso de uso. 
 \subsubsection{Modelo DDBB}
 Tras analizar el contexto del proyecto, nos hemos decantado por el siguiente modelo E/R: 
 \begin{figure}[H]
@@ -133,6 +142,7 @@ Ya que hemos sido limitados a implementar un caso de uso, al implementar el caso
   \item Generar una factura en formato .pdf.
 \end{itemize}
 \subsubsection{Diseño de clases y métodos}
+\label{subsubsection:designClass}
 \subsubsection{Esquema de red}
 La conexión a internet se realizará via Wi-Fi, utilizando el Wi-Fi emitido por el router que estará en la oficina. Hemos optado 
 por no utilizar cableado ya que creemos que hoy en día el Wi-Fi aporta suficiente fiabilidad y añadir cableado al taller podría provocar molestias a los empleados a la hora de utilizar 
