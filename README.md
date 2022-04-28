@@ -55,3 +55,7 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
 ## Miercoles 27/04/2022 (1hora clase + 1 hora casa)
  - Documentar en casa 
  - En clase poner en marcha el .jar en el servidor y crear el servicio.
+
+## Jueves 28/04/2022 (6 Horas clase)
+ - Documentar
+ - Diagrama de clases

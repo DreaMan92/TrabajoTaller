@@ -25,6 +25,7 @@
 \usepackage{amsmath}
 \usepackage{color}
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}%
 \usepackage[toc,title,page]{appendix}
 \addto\captionsspanish{%
@@ -71,11 +72,54 @@
 \section{FASE 1: ANALISIS Y DISEÑO}
 \subsection{Introducción: AppTaller}
 \subsection{Objetivos}
+En este proyecto tenemos como objetivo desarrollar un programa y desplegar una página web para un taller mecánico.
+Para ello utilizaremos los contenidos vistos en todas las asignaturas y los conectaremos entre si.\\
+El programa debe ser de utilidad para la realización del trabajo del taller, y debería ayudar a mantener un flujo de 
+trabajo adecuado.
 \subsection{Contextualización del proyecto}
+A la hora de desarrollar una aplicación para un taller mecánico, esta puede englobar todos los ámbitos que conllevan
+un taller o centrarse en algún área especifica. En nuestro caso, nos centraremos en lo que es puramente trabajo de taller,
+es decir, no pretendemos que nuestra aplicación tenga un uso contable, sino más bien que se trate de una aplicación de 
+gestión de reparaciones de vehículos.\\
+Por otra parte, la web será puramente informativa y de contacto. Es decir, en ella podrá conocer sobre el taller y los productos que se usan
+en el taller, pero no se venderá ningún producto o servicio en la web.
 \subsection{Análisis}
 \subsection{Diseño} 
+\subsubsection{Modelo DDBB}
+Tras analizar el contexto del proyecto, nos hemos decantado por el siguiente modelo E/R: 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{bbdd/DiagramaEntidadRelacion.png}
+  \caption{Diagrama E/R de la BD}
+  \label{fig:ER}
+\end{figure}
+A la hora de decantarnos por este modelo, hemos desechado las siguientes opciones:\\
+\begin{itemize}
+  \item Proveedores: Hemos decidido no incluir la parte logística de la obtención de piezas. La inclusión complicaría en exceso la base de datos, y teniendo en cuenta que solo debemos implementar un caso de uso, no lo hemos visto necesario.
+  \item Salarios: Ya que no hemos incluído lo anterior, hemos decidido no incluir nada relacionado con los gastos de empresa. Hemos decidido que de añadirse, deberiamos añadir todos los gastos para tener una gestión de contabilidad completa.
+\end{itemize}
+Debido a estas decisiones, hemos decidido enfocar más nuestro proyecto a la parte puramente mecánica y relacionada con el taller de la empresa. Hemos realizado las transformaciones necesarias al diseño E/R, por lo que las 
+tablas que tendremos que crear son las siguientes:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{bbdd/normalizacion.PNG}
+  \caption{Normalización del modelo E/R}
+\end{figure}
+\subsubsection{Listado y Descripción de funcionalidades}
+Ya que hemos sido limitados a implementar un caso de uso, al implementar el caso de uso de reparar un vehículo nuestro programa tendrá las siguientes funcionalidades:\\
+\begin{itemize}
+  \item Elegir un vehículo de la lista de vehículos registrados.
+  \item Ver que vehículos están siendo reparados.
+  \item Realizar una reparacion: \begin{itemize}
+    \item Añadir piezas a la reparación.
+    \item Especificar la duración de la reparación.
+    \item Añadir comentarios para que el cliente los lea.
+  \end{itemize}
+  \item Generar una factura en formato .pdf.
+\end{itemize}
 \subsection{Planificación semanal}
 \subsection{FOL}
+\clearpage
 \section{FASE 2: IMPLEMENTACIÓN Y PRUEBAS}
 {
   \lstset{%
@@ -108,10 +152,10 @@
   	tabsize=3,
 }
 \subsection{DDBB: Código SQL}
-Para ver la instalación de la BBDD de oracle, referiros a la sección de Sistemas Informáticos, en este apartado nos limitaremos a describir el código sql ejecutado en la BD.\\
+Para ver la instalación de la SGDB de Oracle, referiros a la sección de Sistemas Informáticos, al apartado \ref{subsubsection:Software}. En este apartado nos limitaremos a describir el código sql ejecutado en la BD.\\
 Para poner en marcha nuestra base de datos, primero hemos creado dos datafiles en los que se dividirá el contenido. \\ Luego hemos creado un usuario de jefe o administrador, y 5 cuentas para los mecánicos, y hemos modificado sus perfiles,
 permitiendo tan solo 1 inicio de sesión simultaneo por usuario. También hemos creado un usuario para los visitantes de la web, este usuario tiene la posibilidad de crear sesiones simultaneas ilimitadas. \\ 
-Luego hemos creado las tablas que podemos observar en los diagramas. Cabe destacar que para tener IDs autogenerados ascendentes, hemos utilizado la siguiente secuencia:\\
+Luego hemos creado las tablas que podemos observar en la figura \ref{fig:ER} . Cabe destacar que para tener IDs autogenerados ascendentes, hemos utilizado la siguiente secuencia:\\
 \begin{lstlisting}{sql}
   CREATE SEQUENCE CLIENTES_SEQ START WITH 1;
 
@@ -127,6 +171,7 @@ Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref
 }
 
 \subsection{Programación: Clases y métodos}
+  \subsubsection{Organización del Código}
   En nuestro programa hemos decidido separar la lógica de negocio de las interfaces.\\ 
   Hemos dividido las clases en 4 paquetes:\\
   \begin{itemize}
@@ -137,12 +182,89 @@ Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref
     \item UI: En este paquete están las interfaces gráficas con sus controladores. 
   \end{itemize}
   El código fuente de todo el programa se puede ver en el Anexo \ref{appendix:programacion}.
+  \subsubsection{Capturas de Ejecución}
+  En las siguientes capturas podemos ver la ejecución del programa:\\
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{program/capturasEjec/login.PNG}
+      \caption{Pantalla de Login de AppTaller.}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{program/capturasEjec/loginFallido.PNG}
+      \caption{Login fallido.}
+    \end{subfigure}
+    \caption{Pantalla Login.}
+  \end{figure}
+  El login de nuestro programa funciona en conjunto con el de la base de datos, es decir, utiliza los mismos usuarios y contraseñas. Por lo tanto, si el programa no es capaz de alcanzar la base de datos,
+  no se podrá utilizar.\\
+
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{program/capturasEjec/menu.PNG}
+        \caption{Pantalla menu de opciones una vez logueado.}
+      \end{subfigure}%
+      \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{program/capturasEjec/menuNoOption.PNG}
+        \caption{Al elegir una opcion que no desarrollada.}
+      \end{subfigure}
+      \caption{Pantalla Menu.}
+    \end{figure}
+  En nuestro programa solo funciona la opción de reparar vehículo, ya que hemos acordado que será la única que implementaremos. Al elegir la opción de reparar vehículo se nos muestra la siguiente pantalla. 
+  Cuando a algún vehículo se le ha realizado alguna reparación pero aún no se ha terminado con él, está pantalla lo mostrará en la lista de la derecha:\\
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{program/capturasEjec/menuElegirVehiculo.PNG}
+      \caption{Menu para elegir vehículo cuando no hay ninguna reparación comenzada.}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{program/capturasEjec/menuElegirVehiculo2.PNG}
+      \caption{Menu para elegir vehículo cuando hay una reparación comenzada.}
+    \end{subfigure}
+    \caption{Pantalla Elegir Vehiculo.}
+  \end{figure}
+
+  Finalmente, la pantalla de reparación tiene dos opciones para finalizar: Finalizar reparación y vehículo preparado. Con el primero finalizamos la tarea, pero el vehículo aún tiene
+  operaciones pendientes, con lo que no está preparado para ser entregado. Con el segundo dejamos el vehículo preparado para su recogida y se genera una factura en pdf. 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{program/capturasEjec/reparacion.PNG}
+    \caption{Pantalla Reparación.}
+  \end{figure}
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{program/capturasEjec/reparacion2.PNG}
+      \caption{Opción finalizar reparación.}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=0.9\linewidth]{program/capturasEjec/reparacion3.PNG}
+      \caption{Opción vehículo preparado}
+    \end{subfigure}
+    \caption{Pantalla Reparación, dos opciones.}
+  \end{figure}
+  Tras finalizar de reparar un vehículo, se genera una factura con la información relevante: 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{program/capturasEjec/Factura 6.pdf}
+    \caption{Factura generada.}
+  \end{figure}
 
 \subsection{Lenguaje de Marcas: conjunto de ficheros}
 \subsection{SSII: Instalación y configuración y puesta en marcha.} 
+\label{subsection:Sistemas}
 \subsubsection{Hardware}
-En nuestro caso hemos optado por equipar el taller con 4 portátiles con el SO Windows. 1 de ellos
-estaría colocado en la oficina y será el portátil del administrador, los otros 3 estarán colocados 
+En nuestro caso hemos optado por equipar el taller con 4 portátiles con el SO Windows. 1 de ellos estaría colocado en la oficina y será el portátil del administrador, los otros 3 estarán colocados 
 en los puestos de reparación de vehículos del taller.\\ La conexión a internet se realizará via Wi-Fi, utilizando el Wi-Fi emitido por el router que estará en la oficina. Hemos optado 
 por no utilizar cableado ya que creemos que hoy en día el Wi-Fi aporta suficiente fiabilidad y añadir cableado al taller podría provocar molestias a los empleados a la hora de utilizar 
 maquinaría pesada y mover piezas por el taller.\\
@@ -176,6 +298,7 @@ Presupuesto total de hardware/Software: \\
   \item Internet: 504€/Año
 \end{itemize}
 \subsubsection{Software}
+\label{subsubsection:Software}
 {
 En los portátiles con Windows 10, instalariamos el programa AppTaller creado por nosotros. No haría falta nada más para tener los ordenadores operativos. \\ 
 \paragraph{Instalación SGDB}
