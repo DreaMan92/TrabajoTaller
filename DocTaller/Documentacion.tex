@@ -84,7 +84,22 @@ gestión de reparaciones de vehículos.\\
 Por otra parte, la web será puramente informativa y de contacto. Es decir, en ella podrá conocer sobre el taller y los productos que se usan
 en el taller, pero no se venderá ningún producto o servicio en la web.
 \subsection{Análisis}
+El taller que hemos planteado tiene 3 puestos de reparación de vehículos. Por lo tanto, pueden trabajar en 3 vehículos simultaneamente.
+Además de ello, tiene una pequeña oficina, donde tienen material típico de oficina como un impresora y donde entra la línea telefónica y de internet.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{misc/planoTaller.PNG}
+  \caption{Plano del taller.}
+\end{figure}
+Ya que un taller tiene muchas piezas y herramientas móviles, y se van moviendo de un lado a otro mientras se trabaja, 
+hemos decidido que como material para la empresa serán necesarios unos portátiles para los puestos de reparación.\\
+La conexión a internet se realizará via Wi-Fi, evitando el cableado y reduciendo el riesgo que tengan los empleados de 
+tropezarse, ya que consideramos esta tecnología suficientemente fiable.\\ 
+También hemos decidido que contrataremos el alojamiento del servidor a una empresa externa, reduciendo el riesgo de perdida de datos por apagones de 
+luz, y reduciendo así el consumo de luz del taller. \\ En cuanto al hardware y software de este material, el servidor deberá correr un sistema linux, 
+y los portátiles cualquier sistema operativo en el que instalemos java.
 \subsection{Diseño} 
+\subsubsection{Diagramas}
 \subsubsection{Modelo DDBB}
 Tras analizar el contexto del proyecto, nos hemos decantado por el siguiente modelo E/R: 
 \begin{figure}[H]
@@ -105,6 +120,7 @@ tablas que tendremos que crear son las siguientes:
   \includegraphics[width=1.0\textwidth]{bbdd/normalizacion.PNG}
   \caption{Normalización del modelo E/R}
 \end{figure}
+\subsubsection{Diseño de interfaces}
 \subsubsection{Listado y Descripción de funcionalidades}
 Ya que hemos sido limitados a implementar un caso de uso, al implementar el caso de uso de reparar un vehículo nuestro programa tendrá las siguientes funcionalidades:\\
 \begin{itemize}
@@ -117,6 +133,17 @@ Ya que hemos sido limitados a implementar un caso de uso, al implementar el caso
   \end{itemize}
   \item Generar una factura en formato .pdf.
 \end{itemize}
+\subsubsection{Diseño de clases y métodos}
+\subsubsection{Esquema de red}
+La conexión a internet se realizará via Wi-Fi, utilizando el Wi-Fi emitido por el router que estará en la oficina. Hemos optado 
+por no utilizar cableado ya que creemos que hoy en día el Wi-Fi aporta suficiente fiabilidad y añadir cableado al taller podría provocar molestias a los empleados a la hora de utilizar 
+maquinaría pesada y mover piezas por el taller.\\ 
+El esquema de red es el siguiente: 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{CapturasSistemas/EsquemaRed.png}
+  \caption{Esquema de Red propuesto.}
+\end{figure}
 \subsection{Planificación semanal}
 \subsection{FOL}
 \clearpage
@@ -261,13 +288,23 @@ Todas las ordenes sql realizadas están en el script disponible en el Anexo \ref
   \end{figure}
 
 \subsection{Lenguaje de Marcas: conjunto de ficheros}
+La página web consta de 4 páginas estáticas, y otras 2 plantillas que se renderizan en el servidor.\\
+\subsubsection{Páginas estáticas}
+\paragraph{index.html}
+\paragraph{location.html}
+\paragraph{mecanicos.html}
+\paragraph{servicios.html}
+\subsubsection{Páginas Dinamicas}
+\paragraph{PaginaProducto.html}
+\paragraph{Productos.html}
+
+
+
 \subsection{SSII: Instalación y configuración y puesta en marcha.} 
 \label{subsection:Sistemas}
 \subsubsection{Hardware}
 En nuestro caso hemos optado por equipar el taller con 4 portátiles con el SO Windows. 1 de ellos estaría colocado en la oficina y será el portátil del administrador, los otros 3 estarán colocados 
-en los puestos de reparación de vehículos del taller.\\ La conexión a internet se realizará via Wi-Fi, utilizando el Wi-Fi emitido por el router que estará en la oficina. Hemos optado 
-por no utilizar cableado ya que creemos que hoy en día el Wi-Fi aporta suficiente fiabilidad y añadir cableado al taller podría provocar molestias a los empleados a la hora de utilizar 
-maquinaría pesada y mover piezas por el taller.\\
+en los puestos de reparación de vehículos del taller.\\
 Debido a las limitadas necesidades que tendrán estos portátiles, hemos optado por el modelo \href{https://www.pccomponentes.com/acer-travelmate-p2-tmp214-53-37at-intel-core-i3-1115g4-8gb-256gb-ssd-14}{\color{red}{{Acer Travelmate P2}}}.\\
 \begin{figure}[H]
   \centering
@@ -360,7 +397,7 @@ Para poner en marcha la base de datos en el servidor, primero hemos instalado do
   \begin{lstlisting}
     sudo systemctl set-timezone Europe/Madrid
   \end{lstlisting}
-  Con este comando hemos establecido el uso horario del servidor.
+  Con este comando hemos establecido el huso horario del servidor.
   Luego hemos creado el fichero \path{/etc/systemd/system/paginaWeb.service} con el siguiente contenido: 
   \begin{lstlisting}
     [Unit]
