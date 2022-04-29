@@ -103,7 +103,7 @@ y los portátiles cualquier sistema operativo en el que instalemos java.
 En la situación que hemos planteado en la sección \ref{subsection:context}, nos surgen los siguientes casos de uso de una aplicación para los empleados:
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1.0\textwidth]{misc/CasosDeUsoTaller.png}
+  \includegraphics[width=1.0\textwidth]{misc/CasosDeUsoTalleresGutierrez.png}
   \caption{Casos de uso de una aplicación de taller.}
 \end{figure}
 Debido a que a nosotros se nos demanda implementar un caso de uso, nos centraremos en desarrollar el caso de uso \textbf{reparar vehículo.}.
@@ -143,6 +143,18 @@ Ya que hemos sido limitados a implementar un caso de uso, al implementar el caso
 \end{itemize}
 \subsubsection{Diseño de clases y métodos}
 \label{subsubsection:designClass}
+Como hemos mencionado anteriormente, solo hemos implementado un caso de uso en nuestro programa. Para ello, hemos diseñado y programado las siguientes clases: 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{program/DiagramaDeClasesTaller.png}
+  \caption{Diagrama de clases del programa.}
+\end{figure}
+En cuanto el empleado elija reparar un vehículo, el programa completará el siguiente diagrama de secuencia:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{program/SecuenciaRepararvehiculo.png}
+  \caption{Secuencia al reparar un vehículo}
+\end{figure}
 \subsubsection{Esquema de red}
 La conexión a internet se realizará via Wi-Fi, utilizando el Wi-Fi emitido por el router que estará en la oficina. Hemos optado 
 por no utilizar cableado ya que creemos que hoy en día el Wi-Fi aporta suficiente fiabilidad y añadir cableado al taller podría provocar molestias a los empleados a la hora de utilizar 

@@ -1,0 +1,40 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}FASE 1: ANALISIS Y DISEÑO}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Introducción: AppTaller}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objetivos}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Contextualización del proyecto}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Análisis}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Diseño}{5}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Diagramas}{5}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Modelo DDBB}{5}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Diseño de interfaces}{6}{subsubsection.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.5.4}Listado y Descripción de funcionalidades}{6}{subsubsection.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.5.5}Diseño de clases y métodos}{7}{subsubsection.1.5.5}%
+\contentsline {subsubsection}{\numberline {1.5.6}Esquema de red}{8}{subsubsection.1.5.6}%
+\contentsline {subsection}{\numberline {1.6}Planificación semanal}{8}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}FOL}{8}{subsection.1.7}%
+\contentsline {section}{\numberline {2}FASE 2: IMPLEMENTACIÓN Y PRUEBAS}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}DDBB: Código SQL}{9}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Programación: Clases y métodos}{9}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Organización del Código}{9}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Capturas de Ejecución}{9}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Lenguaje de Marcas: conjunto de ficheros}{13}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Páginas estáticas}{13}{subsubsection.2.3.1}%
+\contentsline {paragraph}{index.html}{13}{paragraph*.15}%
+\contentsline {paragraph}{location.html}{14}{paragraph*.17}%
+\contentsline {paragraph}{mecanicos.html}{15}{paragraph*.19}%
+\contentsline {paragraph}{servicios.html}{16}{paragraph*.21}%
+\contentsline {subsubsection}{\numberline {2.3.2}Páginas Dinamicas}{17}{subsubsection.2.3.2}%
+\contentsline {paragraph}{Productos.html}{17}{paragraph*.23}%
+\contentsline {paragraph}{PaginaProducto.html}{18}{paragraph*.26}%
+\contentsline {subsubsection}{\numberline {2.3.3}CSS}{18}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Imagenes e Iconos}{19}{subsubsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.4}SSII: Instalación y configuración y puesta en marcha.}{19}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Hardware}{19}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Software}{20}{subsubsection.2.4.2}%
+\contentsline {paragraph}{Instalación SGDB}{20}{paragraph*.29}%
+\contentsline {paragraph}{Instalación Página/Servidor Web}{21}{paragraph*.31}%
+\contentsline {subsection}{\numberline {2.5}FOL: Riesgos Laborales}{21}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Inglés}{21}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Consideraciones}{21}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Bibliografía}{21}{subsection.2.8}%
