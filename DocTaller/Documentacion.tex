@@ -33,6 +33,8 @@
   \renewcommand\appendixpagename{Anexos}
   \renewcommand\appendixtocname{Anexos}
 }
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \usepackage{listingsutf8}
 \usepackage{listings}
 \renewcommand{\lstlistingname}{Código}
@@ -166,7 +168,57 @@ El esquema de red es el siguiente:
   \caption{Esquema de Red propuesto.}
 \end{figure}
 \subsection{Planificación semanal}
-\subsection{FOL}
+En nuestro proyecto, establecimos un orden en el que realizar las diferentes partes del proyecto.
+Para empezar la siguiente parte no hemos considerado necesario haber terminado la anterior, pero sí haber
+realizado unos mínimos, como puede ser tener una base de datos funcional antes de empezar a programar la conexión.\\
+El orden que hemos elegido es el siguiente: 
+\begin{enumerate}
+  \item Diseñar el modelo E/R
+  \item Montar la base de datos
+  \item Establecer limites del programa
+  \item Plantear necesidades HW y SW
+  \item Diseñar Página Web 
+  \item Programar la aplicación
+  \item Programar/Escribir la página
+  \item Realizar presupuesto hw/sw
+\end{enumerate} 
+Basandonos en este órden hemos desarrollado la aplicación y la página. Las horas invertidas en cada proceso
+se pueden ver en la tabla \ref{tab:horas}.
+\begin{table}[H]
+  \begin{tabular}{c c c c}
+    \hline
+    Tarea & Fecha inicio & Fecha Fin & Horas Aproximadas \\
+    \hline
+    \hline
+    Plantear modelo E/R \\ 
+    Diseño en DIA y Normalización \\ 
+    Trabajar en script .sql \\ 
+    Planteamiento diseño página web \\
+    Plantear HW y SW necesarios en taller & 28/03/2022 & 03/04/2022 & 10 \\ [1ex]
+    \hline
+    Decidimos que caso de uso implantar \\
+    Crear backend con Spring \\ 
+    Empezar a programar Aplicación \\
+    Empezar a escribir html y css \\
+    Seguir con el script .sql & 04/04/2022 & 10/04/2022 & 12 \\ 
+    \hline 
+    Escribir HTML & 18/04/2022 & 24/04/2022 & 1.5\\
+    \hline 
+    Escribir HTML \\
+    Poner en marcha el servidor \\
+    Crear diagramas de la aplicación \\
+    Documentar & 25/04/2022 & 01/04/2022 & 12\\
+    \hline 
+    Documentar \\
+    Modificar HTML y js & 02/05/2022 & 08/05/2022 & 4 \\
+    \hline
+    Totales : 39.5 Horas \\
+    \hline
+  \end{tabular}
+  \caption{Tabla de horas aproximadas dedicadas.}
+  \label{tab:horas}
+\end{table}
+
 \clearpage
 \section{FASE 2: IMPLEMENTACIÓN Y PRUEBAS}
 {
@@ -394,6 +446,7 @@ obtiene el fichero mecanicos.xml, y utilizando su contenido modifica el código 
       </empleados>
       \end{lstlisting}
 }
+\clearpage
 El script de JavaScript que dibuja este contenido es el siguiente:
 {
   \definecolor{lightgray}{rgb}{.9,.9,.9}
