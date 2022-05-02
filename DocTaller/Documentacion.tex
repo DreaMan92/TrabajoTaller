@@ -109,7 +109,7 @@ En la situación que hemos planteado en la sección \ref{subsection:context}, no
   \caption{Casos de uso de una aplicación de taller.}
 \end{figure}
 Debido a que a nosotros se nos demanda implementar un caso de uso, nos centraremos en desarrollar el caso de uso \textbf{reparar vehículo.}.
-En el apartado \ref{subsubsection:designClass} especificamos la estructura con la que desarrollaremos el programa e incluimos un diagrama de secuencia para este caso de uso. 
+En el apartado \ref{subsubsection:designClass} especificamos la estructura con la que desarrollaremos el programa e incluímos un diagrama de secuencia para este caso de uso. 
 \subsubsection{Modelo DDBB}
 Tras analizar el contexto del proyecto, nos hemos decantado por el siguiente modelo E/R: 
 \begin{figure}[H]
@@ -499,35 +499,21 @@ function showResult(xmlhttp) {
     var xmlDoc = xmlhttp.responseXML.documentElement;
     var rowData = xmlDoc.getElementsByTagName("empleado");
     var wrapper = document.getElementById("mecanicos");
-    console.log(rowData.length);
     for (i=0; i<rowData.length;i++){
-        
         var url,name,desc;
         url = rowData[i].getElementsByTagName("imagen")[0].childNodes[0].nodeValue;
-        console.log(url);
         name = rowData[i].getElementsByTagName("nombre")[0].childNodes[0].nodeValue;
         desc = rowData[i].getElementsByTagName("descripcion")[0].childNodes[0].nodeValue;
         if (i%2 == 0){
-            imagenIzq(wrapper,url,name,desc);
+          var texto = "<img src="+url+" alt=''><div class='info'><h6>"+name+"</h6><p>"+desc+"</p></div>";
+          wrapper.insertAdjacentHTML("beforeend",texto)
         } else {
-            imagenDer(wrapper,url,name,desc);
+          var texto = "<div class='info'><h6>"+name+"</h6><p>"+desc+"</p></div><img src="+url+" alt=''>";
+          wrapper.insertAdjacentHTML("beforeend",texto)
         }
     }
 }
-
-
-
-function imagenIzq(wrapper,url,name,desc){
-    var texto = "<img src="+url+" alt=''><div class='info'><h6>"+name+"</h6><p>"+desc+"</p></div>";
-    wrapper.insertAdjacentHTML("beforeend",texto)
-}
-
-function imagenDer(wrapper,url,name,desc){
-    var texto = "<div class='info'><h6>"+name+"</h6><p>"+desc+"</p></div><img src="+url+" alt=''>";
-    wrapper.insertAdjacentHTML("beforeend",texto)
-}
-
-  \end{lstlisting}
+\end{lstlisting}
 }
 \paragraph{servicios.html}
 \begin{figure}[H]
