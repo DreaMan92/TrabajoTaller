@@ -204,7 +204,7 @@ Para ver la instalación de la SGDB de Oracle, referiros a la sección de Sistem
 Para poner en marcha nuestra base de datos, primero hemos creado dos datafiles en los que se dividirá el contenido. \\ Luego hemos creado un usuario de jefe o administrador, y 5 cuentas para los mecánicos, y hemos modificado sus perfiles,
 permitiendo tan solo 1 inicio de sesión simultaneo por usuario. También hemos creado un usuario para los visitantes de la web, este usuario tiene la posibilidad de crear sesiones simultaneas ilimitadas. \\ 
 Luego hemos creado las tablas que podemos observar en la figura \ref{fig:ER} . Cabe destacar que para tener IDs autogenerados ascendentes, hemos utilizado la siguiente secuencia:\\
-\begin{lstlisting}{sql}
+\begin{lstlisting}[caption=Código sql para autogenerar IDs]
   CREATE SEQUENCE CLIENTES_SEQ START WITH 1;
 
   CREATE OR REPLACE TRIGGER CLIENTES_IDS BEFORE INSERT ON CLIENTE FOR EACH ROW
@@ -331,6 +331,151 @@ Todo el código fuente se puede consultar en el \href{https://github.com/martinf
   \includegraphics[width=0.7\textwidth]{LMSI/CapturasWeb/SobreNosotros.png}
   \caption{mecanicos.html}
 \end{figure}
+Para rellenar el contenido de esta página, hemos creado un script de JavaScript que
+obtiene el fichero mecanicos.xml, y utilizando su contenido modifica el código html.
+{
+  \lstset{language=XML,
+  backgroundcolor=\color{white},
+  inputencoding=utf8,
+  escapeinside={\%*}{*)},
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+  breakatwhitespace=false,
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    showstringspaces=false,
+    breakatwhitespace=true,
+    captionpos=b,
+    frame=single,
+    basicstyle=\ttfamily,
+    moredelim=[il][\textcolor{pgrey}]{$$},
+    moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+  }
+    \begin{lstlisting}[caption=mecanicos.xml]
+      <?xml version="1.0" encoding="UTF-8"?>
+      
+      <empleados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="mecanicos.xsd">
+          <empleado>
+              <imagen>"imagenes/juanRodriguez.jpg"</imagen>
+              <nombre>Juan Rodriguez</nombre>
+              <descripcion>Ex-piloto de rally, apasionado del motor. Tras compartir experiencias con mecánicos y pilotos de todo
+                  el mundo, se unió a nuestro equipo en 2015.</descripcion>
+          </empleado>
+          <empleado>
+              <imagen>"imagenes/raulIruretagollena.jpg"</imagen>
+              <nombre>Raul Iruretagollena</nombre>
+              <descripcion>Desde 2018 en la empresa. Sus conocimientos sobre frenos podrían parar un tren.</descripcion>
+          </empleado>
+          <empleado>
+              <imagen>"imagenes/juanjoUriburu.jpg"</imagen>
+              <nombre>Juanjo Uriburu</nombre>
+              <descripcion>Uno de los veteranos de la empresa, en la cual lleva desde 2002. Experto en escape de gases y
+                  emisiones, se asegura de que con tu vehículo no contamines ni un gramo de más nuestro mundo.</descripcion>
+          </empleado>
+          <empleado>
+              <imagen>"imagenes/soniaVirasoro.jpg"</imagen>
+              <nombre>Sonia Virasoro</nombre>
+              <descripcion>La experta en eléctricidad y electrónica, una profesional muy detallista que hace que todos los
+                  pequeños detalles y funciones de tu vehículo no fallen nunca. Desde 2012 en Hermanos Gutierrez.</descripcion>
+          </empleado>
+          <empleado>
+              <imagen>"imagenes/aitorSegurola.jpg"</imagen>
+              <nombre>Aitor Segurola</nombre>
+              <descripcion>Nuestro experto en transmisiones y suspensiones, se encarga de que tu vehículo funcione tan suave y
+                  sea tan preciso como el primer día. Con nosotros desde 2014.</descripcion>
+          </empleado>
+          <empleado>
+              <imagen>"imagenes/juanmariGutierrez.jpg"</imagen>
+              <nombre>Juanmari Gutierrez</nombre>
+              <descripcion>Hijo del co-fundador Eustaquio Gutierrez, tomo cargo de la empresa en 2008. Experto en motores y
+                  combustión, sería capaz de encajar un motor de avión en un turismo.</descripcion>
+          </empleado>
+          
+      </empleados>
+      \end{lstlisting}
+}
+El script de JavaScript que dibuja este contenido es el siguiente:
+{
+  \definecolor{lightgray}{rgb}{.9,.9,.9}
+  \definecolor{darkgray}{rgb}{.4,.4,.4}
+  \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+  \lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+  }
+  \lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+  }
+  \begin{lstlisting}[caption=mecanicos.js]
+window.addEventListener("load", function() {
+	getRows();
+});
+function getRows() {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("get", "mecanicos.xml", true);
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			showResult(this);
+		}
+	};
+	xmlhttp.send(null);
+}
+function showResult(xmlhttp) {
+    var xmlDoc = xmlhttp.responseXML.documentElement;
+    var rowData = xmlDoc.getElementsByTagName("empleado");
+    var wrapper = document.getElementById("mecanicos");
+    console.log(rowData.length);
+    for (i=0; i<rowData.length;i++){
+        
+        var url,name,desc;
+        url = rowData[i].getElementsByTagName("imagen")[0].childNodes[0].nodeValue;
+        console.log(url);
+        name = rowData[i].getElementsByTagName("nombre")[0].childNodes[0].nodeValue;
+        desc = rowData[i].getElementsByTagName("descripcion")[0].childNodes[0].nodeValue;
+        if (i%2 == 0){
+            imagenIzq(wrapper,url,name,desc);
+        } else {
+            imagenDer(wrapper,url,name,desc);
+        }
+    }
+}
+
+
+
+function imagenIzq(wrapper,url,name,desc){
+    var texto = "<img src="+url+" alt=''><div class='info'><h6>"+name+"</h6><p>"+desc+"</p></div>";
+    wrapper.insertAdjacentHTML("beforeend",texto)
+}
+
+function imagenDer(wrapper,url,name,desc){
+    var texto = "<div class='info'><h6>"+name+"</h6><p>"+desc+"</p></div><img src="+url+" alt=''>";
+    wrapper.insertAdjacentHTML("beforeend",texto)
+}
+
+  \end{lstlisting}
+}
 \paragraph{servicios.html}
 \begin{figure}[H]
   \centering
