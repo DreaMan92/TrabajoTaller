@@ -60,6 +60,6 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
  - Documentar
  - Diagrama de clases  
 
-## Lunes 02/05/2022 
+## Lunes 02/05/2022 (3 Horas)
  - Terminar código js para renderizar página usando .xml
- - Documentar
+ - Documentar parte de fol y lo anterior.
