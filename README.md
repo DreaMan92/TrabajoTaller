@@ -58,4 +58,8 @@ Hemos planificado el diseño del entorno de trabajo de cara a sistemas informati
 
 ## Jueves 28/04/2022 (6 Horas clase)
  - Documentar
- - Diagrama de clases
+ - Diagrama de clases  
+
+## Lunes 02/05/2022 
+ - Terminar código js para renderizar página usando .xml
+ - Documentar
