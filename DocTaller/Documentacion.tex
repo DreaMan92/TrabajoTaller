@@ -28,6 +28,7 @@
 \usepackage{subcaption}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}%
 \usepackage[toc,title,page]{appendix}
+\usepackage{enumitem}
 \addto\captionsspanish{%
   \renewcommand\appendixname{Anexo}
   \renewcommand\appendixpagename{Anexos}
@@ -92,6 +93,7 @@ Además de ello, tiene una pequeña oficina, donde tienen material típico de of
   \centering
   \includegraphics[width=1.0\textwidth]{misc/planoTaller.PNG}
   \caption{Plano del taller.}
+  \label{fig:planoTaller}
 \end{figure}
 Ya que un taller tiene muchas piezas y herramientas móviles, y se van moviendo de un lado a otro mientras se trabaja, 
 hemos decidido que como material para la empresa serán necesarios unos portátiles para los puestos de reparación.\\
@@ -129,8 +131,21 @@ tablas que tendremos que crear son las siguientes:
   \centering
   \includegraphics[width=1.0\textwidth]{bbdd/normalizacion.PNG}
   \caption{Normalización del modelo E/R}
+  \label{fig:normalizado}
 \end{figure}
 \subsubsection{Diseño de interfaces}
+Para realizar el diseño de las páginas que crearemos, primero hemos realizado unos bocetos a mano, y despues hemos hecho algo más aproximado a lo que desarrollaremos utilizando
+la herramienta \href{https://www.invisionapp.com/home}{InVision}. El diseño que buscaremos usar es el siguiente:\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/PaginaDiseño.png}
+  \caption{Diseño de la página web}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{LMSI/PaginaDiseñoMovil.png}
+  \caption{Diseño de la página web versión móvil}
+\end{figure}
 \subsubsection{Listado y Descripción de funcionalidades}
 Ya que hemos sido limitados a implementar un caso de uso, al implementar el caso de uso de reparar un vehículo nuestro programa tendrá las siguientes funcionalidades:\\
 \begin{itemize}
@@ -166,6 +181,7 @@ El esquema de red es el siguiente:
   \centering
   \includegraphics[width=1.0\textwidth]{CapturasSistemas/EsquemaRed.png}
   \caption{Esquema de Red propuesto.}
+  \label{fig:esquemared}
 \end{figure}
 \subsection{Planificación semanal}
 En nuestro proyecto, establecimos un orden en el que realizar las diferentes partes del proyecto.
@@ -679,50 +695,80 @@ Para poner en marcha la base de datos en el servidor, primero hemos instalado do
 \subsection{FOL: Riesgos Laborales}
 \input{Fol/FolDoc}
 \subsection{Inglés}
-\subsubsection{Early Stage}
-Welcome to our Web Application, this summary will talk about the early stage of our project, what we have to do and what we are going to do. This time we have to create a java application for a Mechanical workshop and its own web page.This is the final project which includes several different disciplines that we learned during this programming course. We are going to develop as much as we can, implementing all our new knowledge. Hope you enjoy it.
-\\\\
-Gutierrez Brothers workshop.
-\\\\
-First of all, talk about the topic that we have to implement. This is about a mechanical workshop.
-A program for a mechanical workshop has to include all about the registration of new clientes, a good way to keep safe information and give good access to it, like: be able to identify workers and clients,be able to identify clients' cars or be able to keep all this information safe . All of these questions make us realize that the first step is to create a good database. After that we will develop the program to give access in a simple and functional way to the workers, because they are going to be who work with it.
-Obviously we can´t reach all the functionalities that a professional application needs, so we have decided don´t implement financial options and focus on repairs management.
-On the other hand, we had to implement a web page about this topic, and we decided to do a basic one, with  informative and contact uses. However our page is going to be connected to our database, to obtain information from it.
-
 \subsubsection{Abstract}
-This project joins all different knowledge from this programming course. We had to implement an application for a mechanic workshop and make its own web page.
-Furthermore an important part of this project is to write all the documentation about it.
-We have created a web page for Hermanos Rodriguez workshop, and a java application to repair management. Underneath, a basic and functional database is working, one that helps us to manage all the required information. Finally we used a Spring framework for developing a java connection with our database.
-\\\\
-In my opinion, the first purpose of this project was to learn, putting on practice, uses of the knowledge studied during this course. It has been a little approach to the professional world, merging into one big job, all our subjects.  
-\\\\
-To make it happen, we first researched other mechanic workshops, to make the web page, we planned the structure and its parts. We decided to make a backend to show products. Anyway our web page is only informative and to contact, because it is impossible to reach a professional project, without time.  About the database, we decided what information we would want to use, we created users, and restrictions, we filled it with fake information, basically we created the whole script. That's why without a good database the rest doesn't matter.
-\\\\
-Programming has two different parts, application and connection between database and web page. 
-\\\\
-As a result, we have obtained a useful informative and contact web page, and as i said, with an implementation of a backend to our database.
-We developed a programming aplicacion focused on repairs management. Anyway, we imagine other use cases, but we did not implement them due we had to put the limit in some place.
-\\\\
-Maybe it looks like we forgot about  the rest of the subject, but as I said this project has an important documentation part, and in my opinion English, FOL or Informatic Systems are more about writing than making. However we have completed all requests.
-FOL´s part has been made by Martín, and he has exposed hazards and risks from a mechanic workshop, keeping safe to workers.
-\\\\
-Obviously all of this information in english is about english class.
-Finally the part of informatic systems, is where we explain the design of our mechanic workshop. How many computers they are going to need, what kind of computers, with what kind of hardware and software, which kind of operating sistem. Internet which we are going to contract and of course different illustrations.
-\\\\
-In conclusion, I believe that has been a difficult project, very useful, where we could learn lots of new things, and put it into practice.
-\\
-\subsubsection{Bibliography}
-\begin{enumerate}
-  \item \href{https://www.linguee.es/}{Linguee}
-  \item \href{https://docs.oracle.com/javase/7/docs/api/}{API Java}
-  \item \href{https://www.w3schools.com/}{W3School}{HTML, CSS, SQL...}
-  \item \href{https://www.youtube.com/watch?v=9SGDpanrc8U&ab_channel=Amigoscode}{Spring Framework}
-  \item \href{https://www.youtube.com/watch?v=vtPkZShrvXQ&ab_channel=freeCodeCamp.org}{Spring Framework}
-  \item \href{https://www.baeldung.com/spring-boot-app-as-a-service}{Spring info}
-  \item \href{https://www.freecodecamp.org/}{Spring info}
-  \item \href{https://github.com/}{GitHub} 
-\end{enumerate}
-\subsection{Consideraciones}
+In this rapidly changing world, our job is to help companies with this transition to digitalization. This time it was a family mechanic workshop who needed this change. What we offered them was a personalized solution for their business, consisting of a web page and a desktop application for the workshop workers. First step into this project was researching their needs, hardware and software-wise. For data persistence, an Oracle database has been used. Java has been the technology used for the desktop application.
+The web page has been built with HTML,CSS and Javascript for the frontend and Spring Boot for the backend, using XML for data transfer in some cases.The final product contains an application designed for car repair management, and a web application display .
+The next direction of the product would contain more functionalities into the desktop application, for example countables functions. Furthermore an implementation of an online shop into our web page.
+\subsubsection{Early Stage}
+\paragraph{Introduction - Gutierrez Brothers Workshop}
+\paragraph{Objectives}
+The purpose of this project is to develop a program and build a web page for a mechanic workshop. To make it happen, we will put into practice all the knowledge learnt during this programming course, connecting subjects and joining it between them. 
+\paragraph{Project context}
+When you begin developing an application for a mechanic workshop, this can reach the whole needs or be focused on a concrete area. Ours is going to be focused on the strict work for a workshop,for instance , It is not going to have countable uses, if not, It is going to be focused on management repairs. 
+On the other hand , the web page is going to be basically focused on informative functions and contact uses. For example, a user could know about workshop information such as what kind of pieces they use, but not any product will be sold on it.
+\paragraph{Analysis}
+The Gutierrez Brothers workshop is going to have 3 different modules to car repairs, as displayed in figure \ref{fig:planoTaller}. Therefore, three cars could be being repaired at the same time. In addition, there is a little office where common stuff from the office is kept, like a printer, desk and folders. The office is the place where telefonic line comes and with it, the internet. \\
+Since a mechanic workshop is a place where tools and machines have to be moved constantly during the job, we have decided that the company will need laptops for the three repair modules. \\
+Internet connection will be via Wi-Fi, avoiding cables everywhere and reducing risk from trip hazards, this is because we consider that the technology is more than trustfull. \\
+Furthermore we decided to contract the server hosting service to an external company, reducing lost data risk due to power cuts and saving money from the workshop electricity  bills. \\
+About hardware and software for this material, the server will be running with a linux distribution, as Ubuntu, and for laptops any operating system in which we will install Java. \\
+
+\paragraph{Design}
+\begin{itemize}
+  \item Desktop application: \\
+  As this project joins different subjects combined to build a whole application, they did not need to make us implement all the functionalities that a workshop would need. However there are five use cases.
+  \begin{enumerate}
+    \item Car repair
+    \item Car registration
+    \item View bills
+    \item Ask for pieces
+    \item Client registration
+  \end{enumerate}
+  Although our program has five use cases, we have focused on one of them, car repair.
+  \item Database structure:\\
+  The diagram of the figure \ref{fig:ER} is the skeleton of our database. When we designed it, we dismissed the next two options:\\
+  \begin{enumerate}
+    \item Suppliers: We have chosen to avoid including supplier functions in relation to how we obtain car new pieces. As we have to implement one use case only, we did not think it would be necessary, due this would complicate our database.
+    \item Payment of wages: As we did not include suppliers, we decided not to include anything about company payments. If we had decided to include it, we would have implemented the whole payment management system for the company.
+  \end{enumerate}
+  Due to having made all these decisions, we have chosen to focus our project in the mechanic area of the workshop. As result of the transformation of the entity relationship diagram, the tables to be implemented are the ones of figure \ref{fig:normalizado}.
+  \item List and description of functionalities:\\
+  As we have been limited about the implementation of only one use case, the car repair functions would have the nexts functionalities:
+  \begin{enumerate}
+    \item Choosing one car from the cars list already kept in the system.
+    \item Observe which cars have been repaired.
+    \item Make a repair:
+          \begin{enumerate}[label=\alph*]
+            \item Add car pieces to the repair process.
+            \item Add estimated reparation time.
+            \item Add comments of the repair.
+          \end{enumerate}
+    \item Generate a bill in pdf format.
+  \end{enumerate}
+  \item Network outline:\\
+  As we have said, Internet conexion will be via Wi-Fi. We will host the router in the office of the workshop. As we said too, the philosophy of No-Cables is perfect for a workshop, where constantly the workers are moving around, and using tools everywhere. So without cables we insure to prevent risk, and encourage a comfort workflow. The Network diagram can be seen in figure \ref{fig:esquemared}.
+  \item Weekly planification:\\ 
+  During the design of our project we agreed in an order to conduct it, setting a proper work flow to reach all different parts of it. We thought that not all parts had to be done to begin developing the next one, but at least a minimum should be done. For instance, to have made a functional implementation of the database before starting with programming code.
+  Developement steps are the following:
+  \begin{enumerate}
+    \item Design of entity relationship diagram.
+    \item Build database.
+    \item Set the limit of the application.
+    \item Present hardware and software needs.
+    \item Design of webpage.
+    \item Develop the application.
+    \item Develop and build the web page.
+    \item Create hardware and software budget.
+    \item Write documentation.
+  \end{enumerate}
+
+\end{itemize}
+\subsection{Consideraciones}  
+Este trabajo se ha realizado cumpliendo con los requisitos impuestos para las diferentes asignaturas. Si hubieramos tenido más libertad para tomar algunas decisiones, hubieramos optado por incluir las funcionalidades
+de la aplicación de escritorio en la web, prescindiendo así de usar la librería swing. En caso de realizar una aplicación con java (además del backend), nosotros hubieramos preferido desarrollar una aplicación para móviles, porque en un taller un móvil es una herramienta
+más manejable. \\ 
+En caso de ser un proyecto más grande o para producción, hubieramos instalado en el servidor un servidor web Apache Tomcat, en lugar de crear un .jar que lo incluya. Con ello el proyecto lo empaquetariamos en un .war en vez de .jar,
+y con ello sería más fácil realizar cambios futuros en el HTML y CSS.
 \subsection{Bibliografía}
 \begin{enumerate}
   \item \href{https://docs.oracle.com/en/java/javase/18/docs/api/index.html}{API Java}
@@ -730,5 +776,6 @@ In conclusion, I believe that has been a difficult project, very useful, where w
   \item \href{https://www.w3schools.com/xml/ajax_applications.asp}{w3schools XML Applications}
   \item \href{https://www.youtube.com/watch?v=vtPkZShrvXQ}{freeCodeCamp.org}
   \item \href{https://es.overleaf.com/learn}{Documentación LaTex}
+  \item \href{https://www.baeldung.com/spring-boot-app-as-a-service}{Baeldung Spring Boot as a service}
 \end{enumerate}
 \end{document}
