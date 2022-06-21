@@ -1,0 +1,258 @@
+        header {
+            height: 70vh;
+            background-image: url('../Recursos/imagenes/pexels-cottonbro-4480505.jpg');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .blackcover {
+            background-color: rgba(0, 0, 0, 0.589);
+            position: absolute;
+            height: 100%;
+            top: 0;
+            width: 100%;
+        }
+        
+        .titulo {
+            padding: 0.5rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            font-weight: 400;
+            line-height: 60px;
+            background-color: rgb(255, 255, 255);
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            color: cadetblue !important;
+            z-index: 1;
+        }
+        
+        .subtitulo {
+            background-color: cadetblue;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            color: white!important;
+            padding: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            z-index: 1;
+        }
+        /*----------------------------*/
+        
+        .barraColor {
+            width: 100%;
+            height: 1vh;
+            background-color: rgba(95, 158, 160, 0.738);
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
+        /*--------------------------------------------------*/
+        
+        .seccionForm {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background-size: cover;
+        }
+        
+        .imgseccionForm {
+            width: 100%;
+            height: 100%;
+            opacity: 0.75;
+            position: absolute;
+            size: cover;
+        }
+        
+        .seccionForm>h2 {
+            width: 75%;
+            font-size: 5vw;
+            color: white;
+            text-shadow: 0 0 5px black;
+            padding-top: 1em;
+        }
+        
+        .seccionForm>h3 {
+            width: 60%;
+            font-size: 3.5vw;
+            color: white;
+            text-shadow: 0 0 5px black;
+        }
+        /*------------------form-----------------*/
+        
+        .formulario {
+            width: 80%;
+            height: fit-content;
+            padding: 4em;
+            position: relative;
+        }
+        
+        form {
+            width: 80%;
+            height: fit-content;
+            margin: auto;
+            background-color: rgba(72, 118, 120, 0.768);
+            padding: 1em;
+            padding-top: 3em;
+            margin-bottom: 5em;
+            box-sizing: border-box;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            text-align: center;
+            align-items: center;
+        }
+        
+        form h3 {
+            font-size: 4em;
+            color: white;
+            text-shadow: 0 0 5px black;
+            padding-bottom: 1em;
+        }
+        
+        input {
+            width: 30%;
+            max-width: 90%;
+            margin-bottom: 2em;
+            padding: 1%;
+            box-sizing: border-box;
+            font-size: 1em;
+            border: none;
+        }
+        
+        textarea {
+            width: 90%;
+            height: 100%;
+            min-width: 90%;
+            max-width: 90%;
+            min-height: 35%;
+            max-height: 40%;
+            /*max-height se puede modificar a gusto*/
+            font-size: 1em;
+        }
+        
+        #boton {
+            margin-top: 5%;
+            background-color: black;
+            color: white !important;
+            padding: 1em;
+            border: 1px solid black;
+        }
+        
+        #boton:hover {
+            box-shadow: 1em 1em 1em rgba(160, 160, 160, 0.596);
+            border: 1px solid rgb(66, 111, 112);
+            background-color: rgba(114, 186, 189, 0.911);
+            cursor: pointer;
+        }
+        /*------------seccionInfo--------------------------*/
+        
+        .seccionInfo {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .info {
+            height: 25%;
+            width: 33%;
+            padding: 2em;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .info>* {
+            list-style: none;
+            text-decoration: none;
+            padding: 1em;
+        }
+        
+        .info>img {
+            width: 100%;
+            height: 100%;
+            padding: 1em;
+        }
+        
+        .info>ul>* {
+            padding: 0.5em;
+        }
+        
+        .info:hover {
+            box-shadow: 1em 1em 1em rgba(160, 160, 160, 0.596);
+            border: 1px solid rgb(66, 111, 112);
+            background-color: rgba(114, 186, 189, 0.187);
+        }
+        /*----------seccionMapa------------*/
+        
+        .mapa {
+            width: 100%;
+            height: 80vh;
+            background-image: url('../Recursos/imagenes/taller2.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .marcoMapa {
+            width: 90%;
+            height: 60vh;
+            position: relative;
+            padding: 1.5em;
+            border-radius: 1em;
+            border: solid 1px black;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        /*---------------MediaQueries---------------*/
+        
+        @media screen and (max-width:600px) {
+            .formulario {
+                width: 90%;
+                padding: 1em;
+            }
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 1em;
+            }
+            form h3 {
+                font-size: 2em;
+                color: white;
+                text-shadow: 0 0 5px black;
+                padding-bottom: 1em;
+            }
+            input {
+                width: 100%;
+            }
+            textarea {
+                width: 100%;
+                max-width: 90%;
+            }
+            #boton {
+                width: 80;
+                margin-top: 5%;
+                background-color: black;
+                color: white !important;
+                padding: 20px;
+            }
+            .seccionInfo {
+                flex-direction: column;
+            }
+            .info {
+                width: 100%;
+            }
+        }
+        
+        @media screen and (min-width:1200px) {
+            .info>* {
+                font-size: 1.5em;
+            }
+        }

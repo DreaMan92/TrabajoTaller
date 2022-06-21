@@ -1,0 +1,64 @@
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  
+
+}
+.menu{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid cadetblue;
+}
+.menu>div{
+    margin: 1em;
+}
+
+.menuMarcas:hover .contenidoMarcas {
+    display: flex;
+    flex-direction: column;
+  }
+.menuCat:hover .contenidoCateg{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenidoMarcas,.contenidoCateg{
+    list-style-type: none;
+    display: none;
+    text-align: center;
+    font-size: 1.1em;
+}
+.container{
+    text-align: center;
+    margin: 1em;
+    flex-grow: 1;
+}
+.titulo{
+    margin: 1em;
+    font-weight:400;
+    font-family: 'Montserrat', sans-serif;
+}
+h6{
+text-align: center;}
+@media (min-width:800px) {
+    main{
+        flex-direction: row;
+    }
+    .contenidoMarcas, .contenidoCateg{
+        display: flex;
+        flex-direction: column;
+    }
+    .menu{
+        border-right: 1px solid cadetblue;
+        border-bottom: none;
+    }
+}

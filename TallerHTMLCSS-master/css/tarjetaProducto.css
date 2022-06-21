@@ -1,0 +1,54 @@
+.stacked {
+    display: grid;
+  }
+  
+  .stacked > * {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  
+  .product-grid {
+    display: grid;
+    
+    /* Poner esto en media query para pantallas grandes.
+    max-width: 50%;
+    */
+    gap: 0.125rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  }
+  
+  .card {
+    aspect-ratio: 1 / 1.5;
+  }
+  
+  .card_content {
+    background: white;
+    align-self: end;
+    margin: 0.5rem 0.5rem 2rem;
+    padding: 0.5rem;
+    box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 0.1);
+  }
+  
+  .card_title {
+    font-size: 1.25rem;
+    line-height: 1.1;
+    
+  }
+  .card_title>*{
+    color:cadetblue;
+    font-family: 'Montserrat',sans-serif;
+  }
+  
+  .card_price {
+    font-size: 1.75rem;
+  }
+  
+  .card_img {
+    width: 100%;
+    aspect-ratio: 1 / 1.25;
+    object-fit: cover;
+  }
+  .card_description{
+    color: rgb(150, 150, 150);
+  }
+

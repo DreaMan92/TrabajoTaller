@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<empleados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="mecanicos.xsd">
+    <empleado>
+        <imagen>"imagenes/juanRodriguez.jpg"</imagen>
+        <nombre>Juan Rodriguez</nombre>
+        <descripcion>Ex-piloto de rally, apasionado del motor. Tras compartir experiencias con mecánicos y pilotos de todo
+            el mundo, se unió a nuestro equipo en 2015.</descripcion>
+    </empleado>
+    <empleado>
+        <imagen>"imagenes/raulIruretagollena.jpg"</imagen>
+        <nombre>Raul Iruretagollena</nombre>
+        <descripcion>Desde 2018 en la empresa. Sus conocimientos sobre frenos podrían parar un tren.</descripcion>
+    </empleado>
+    <empleado>
+        <imagen>"imagenes/juanjoUriburu.jpg"</imagen>
+        <nombre>Juanjo Uriburu</nombre>
+        <descripcion>Uno de los veteranos de la empresa, en la cual lleva desde 2002. Experto en escape de gases y
+            emisiones, se asegura de que con tu vehículo no contamines ni un gramo de más nuestro mundo.</descripcion>
+    </empleado>
+    <empleado>
+        <imagen>"imagenes/soniaVirasoro.jpg"</imagen>
+        <nombre>Sonia Virasoro</nombre>
+        <descripcion>La experta en eléctricidad y electrónica, una profesional muy detallista que hace que todos los
+            pequeños detalles y funciones de tu vehículo no fallen nunca. Desde 2012 en Hermanos Gutierrez.</descripcion>
+    </empleado>
+    <empleado>
+        <imagen>"imagenes/aitorSegurola.jpg"</imagen>
+        <nombre>Aitor Segurola</nombre>
+        <descripcion>Nuestro experto en transmisiones y suspensiones, se encarga de que tu vehículo funcione tan suave y
+            sea tan preciso como el primer día. Con nosotros desde 2014.</descripcion>
+    </empleado>
+    <empleado>
+        <imagen>"imagenes/juanmariGutierrez.jpg"</imagen>
+        <nombre>Juanmari Gutierrez</nombre>
+        <descripcion>Hijo del co-fundador Eustaquio Gutierrez, tomo cargo de la empresa en 2008. Experto en motores y
+            combustión, sería capaz de encajar un motor de avión en un turismo.</descripcion>
+    </empleado>
+    
+</empleados>

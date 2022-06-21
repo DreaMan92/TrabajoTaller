@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/Productos.css">
+    <link rel="stylesheet" href="/css/tarjetaProducto.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <title>Productos</title>
+</head>
+<body>
+  <nav>
+    <ul class="topnav">
+        <li><a href="/index.html">Inicio</a></li>
+        <li><a href="/mecanicos.html">Sobre Nosotros</a></li>
+        <li><a class="active" href="/Productos">Productos</a></li>
+        <li><a href="/servicios.html">Servicios</a></li>
+        <li><a href="/location.html">Dónde Encontrarnos</a></li>
+    </ul>
+
+  </nav>
+    <main>
+        <nav class="menu">
+          <div class="menuMarcas">
+            <h6>Marcas</h6>
+            <ul class="contenidoMarcas">
+                <li th:each="brand : ${marcas}" class="listItem"><a th:href="@{/Productos/marca(marca=${brand.marca})}" th:text="${brand.marca}"></a></li>
+            </ul>
+          </div>
+          <div class="menuCat">
+            <h6>Categorias</h6>
+            <ul class="contenidoCateg">
+                <li th:each="cat : ${categorias}" class="listItem"><a th:href="@{/Productos/categoria(categoria=${cat.nombre})}" th:text="${cat.nombre}"></a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container">
+          <h1 class="titulo" th:text="${marca_categoria}"></h1>
+          <section class="product-grid">
+
+              <div th:each="producto : ${productos}" class="card stacked">
+                  <img th:src="${producto.url}" alt="" class="card_img">
+                  <div class="card_content">
+                      <h1 class="card_title"><a th:href="@{/Productos/producto/id(id=${producto.id_pieza})}" th:text="${producto.marca}"></a></h1>
+                      <h2 class="card_subtitle" th:text="${producto.modelo}"></h2>
+                      <p class="card_price" th:text="${producto.precio + '€'}"></p>
+                      <p class="card_description" th:text="${producto.descripcion}"></p>
+                  </div>
+              </div>
+          </section>
+        </div>
+        
+    </main>
+    
+    <footer>
+        <div class="footerSup">
+  
+          <div class="footerCat" id ="contacto">
+            <ul>
+              <h6>Contacto</h6>
+              <li><a href="tel:644594220">644594220</a></li>
+                <li><a href="wa:644594220">Whatsapp <img src="/iconos/whatsapp (2).png" alt="" style="height: 1em; width: 1em; margin: 0;"></a></li>
+              <li><a href="mailto:ikbsc@plaiaundi.net">ikbsc@plaiaundi.net</a></li>
+            </ul>
+          </div>
+          <div class="footerCat" id="servicio">
+            <ul>
+              <h6>Servicios</h6>
+              <li>Revisión ITV</li>
+              <li>Reparaciones</li>
+              <li>Venta de piezas</li>
+            </ul>
+          </div>
+          <div class="footerCat" id="horario">
+            <ul>
+              <h6>Horario Laboral</h6>
+              <li>L-V 8:30-13:00 15:30-19:00</li>
+              <li>S - 8:30-13:00</li>
+              <li>Domingos y festivos cerrado</li>
+            </ul>
+  
+          </div>
+          <div class="footerCat" id="local">
+            <ul>
+              <h6>Dónde encontrarnos</h6>
+              <li>Mendelu Kalea 32, 20280, Hondarribia</li>
+            </ul>
+          </div>
+  
+        </div>
+        
+        <div class="footerInf">
+          <a href="" class="terminos">Politica de privacidad</a>
+          <a href="" class="terminos centro">Politica de cookies</a>
+          <a href="" class="terminos">Terminos de uso</a>
+        </div>
+          
+      </footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+section {
+    display: grid;
+    grid-template-columns: auto;
+    color: inherit;
+    padding: 2em;
+}
+
+main {
+    background-color: rgba(95, 158, 160, 0.096);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav{
+    background-color: white!important;
+}
+header {
+    height: 70vh;
+    background-image: url('https://www.ford.es/content/dam/guxeu/rhd/central/cars/2021-fiesta/launch/billboards/nameplate/ford-fiestaMCA-eu-RNG_01_B479_Fiesta_and_Focus_4_Car_Range_V4.0-21x9-2160x925-nb3.jpg.renditions.original.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+}
+
+.titulo {
+
+    padding: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: 400;
+    line-height: 60px;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Montserrat',sans-serif;
+    font-style: italic;
+    color:cadetblue!important;
+}
+.subtitulo{
+    background-color: cadetblue;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color:white!important;
+    padding: 0.5rem;
+    font-family: 'Montserrat',sans-serif;
+    font-style: italic;
+}
+
+@media (min-width:600px) {
+    nav {
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 100%;
+    }
+}
+
+.seccionTexto {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 2em;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    background-color: rgba(236, 236, 236, 0.13);
+    box-shadow: 1em 1em 1em rgba(236, 236, 236, 0.6);
+}
+
+.cuadroImagenes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1em;
+    align-items: center;
+    background-color: white;
+    padding: 1em;
+}
+
+.cuadroImagenes>img {
+    margin-top: 1em;
+}
+@media (min-width:800px){
+    section{
+        width: 70%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

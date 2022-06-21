@@ -1,0 +1,53 @@
+h2 {
+    text-align: center;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    color: white!important;
+    font-style: italic;
+    background-image: url('https://www.maquinas-maquinas.com/wp-content/uploads/herramientas_taller_mecanico-scaled.jpg');
+    background-size: cover
+}
+
+nav {
+    background-color: rgba(211, 211, 211, 0.253);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tarjetas {
+    display: grid;
+    
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.tarjeta {
+    background-color: rgba(211, 211, 211, 0.253);
+    font-size: 0.9em;
+    padding: 1em;
+    margin: 1em;
+}
+
+.tarjeta:hover {
+    box-shadow: 1em 1em 1em rgba(160, 160, 160, 0.596);
+}
+
+h5 {
+    font-size: 2em;
+    font-weight: 300;
+    padding-bottom: 1em;
+}
+
+@media (min-width:800px) {
+    .tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        width: 70%;
+    }
+}

@@ -1,0 +1,4 @@
+- modificado footer: he quitado los puntos de la lista por que creo que queda mucho mas limpio sin ellos. sobre todo para pantalla pequeña.
+- Tambien he añadido un mediaquery para que se ponga en columan con pantalla pequeña.
+- kamptcha (https://blog.argentinareseller.com/2019/06/22/como-incluir-captcha-en-tus-formularios-web/)
+- https://www.youtube.com/watch?v=M1jkZx2crBg&ab_channel=C%C3%B3digosdeProgramaci%C3%B3n-MR

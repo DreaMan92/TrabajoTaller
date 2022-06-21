@@ -1,0 +1,63 @@
+body{
+    display:flex;
+    height: 100vh;
+    flex-direction: column;
+}
+main{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat',sans-serif; 
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    
+}
+
+.container > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2em;
+    height: 100%;
+}
+
+.textoProducto{
+    background-color: rgba(95, 158, 160, 0.096);
+}
+.textoProducto >*{
+    margin:1rem;
+}
+
+.botonContacto{
+    font-size: large;
+    font-weight: 600;
+    margin:2em;
+    padding: 1em;
+    border: 1px solid black;
+}
+.modelo{
+    font-style: italic;
+    color: gray;
+}
+.precio{
+    font-size: xx-large;
+}
+.botonContacto:hover{
+    
+    background-color: black;
+    color:white;
+    transition: all ease-in-out 0.2s;
+}
+
+
+@media (min-width:800px){
+    .container{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        width: 70%;
+    }
+}
